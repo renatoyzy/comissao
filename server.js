@@ -35,7 +35,7 @@ client.then((client) => {
 }).catch((error) => {
     console.error('Erro ao conectar ao MongoDB:', error);
 });
-let daba = (await client).db('comissao');
+//let db = (await client).db('comissao');
 
 // Rota de exemplo
 app.get('/', (req, res) => {
@@ -54,7 +54,7 @@ app.post('/adicionar-estoque', async (req, res) => {
         // Verifica se produto já existe no banco de dados
         if (await db.collection('produtos').findOne({ nome })) {
             
-            daba.collection('produtos').findOne({ nome }).then(produto_original => {
+            db.collection('produtos').findOne({ nome }).then(produto_original => {
                 let quantia_antiga = produto_original.quantidade;
                 db.collection('produtos').deleteOne({ nome }).then(() => {
                     let result = db.collection('produtos').insertOne({ nome, quantidade: parseInt(quantidade)+parseInt(quantia_antiga) });
