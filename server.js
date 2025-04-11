@@ -41,6 +41,36 @@ app.get('/', (req, res) => {
     res.send('Olá, mundo! Conectado ao MongoDB!');
 });
 
+// Adicionar estoque de produto
+app.post('/adicionar-estoque', async (req, res) => {
+    const { nome, quantidade, data_criacao } = req.body;
+
+    try {
+        if (!nome || !quantidade || !data_criacao) {
+            return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
+        }
+
+        // Verifica se produto já existe no banco de dados
+        if (await db.collection('produtos').findOne({ nome })) {
+            
+            db.collection('produtos').deleteOne({ nome }).then(() => {
+                db.collection('produtos').insertOne({ nome, quantidade });
+                res.status(201).json({ certo: true });
+            });
+
+        } else {
+
+            db.collection('produtos').insertOne({ nome, quantidade });
+            res.status(201).json({ certo: true });
+
+        }
+
+    } catch (error) {
+        console.error('Erro ao adicionar estoque:', error);
+        res.status(500).json({ error_message: error.message });
+    }
+});
+
 // Ngrok
 (async () => {
     // Conectar

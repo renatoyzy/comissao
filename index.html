@@ -19,10 +19,10 @@
             <h1>Registrar venda</h1>
     
             <form>
-                <input placeholder="Comprador" type="text" name="nome" id="nome">
-                <input placeholder="Série" type="text" name="serie" id="serie">
-                <input placeholder="Produto" type="text" name="produto" id="produto">
-                <input placeholder="Quantidade" type="number" name="quantidade" id="quantidade">
+                <input placeholder="Comprador" type="text" name="nome" id="nome" required>
+                <input placeholder="Série" type="text" name="serie" id="serie" required>
+                <input placeholder="Produto" type="text" name="produto" id="produto" required>
+                <input placeholder="Quantidade" type="number" name="quantidade" id="quantidade" required>
                 <input type="submit" class="BotaoPrimario">
             </form>
         </div>
@@ -30,9 +30,9 @@
         <div class="CorpoElemento">
             <h1>Adicionar estoque</h1>
     
-            <form>
-                <input placeholder="Nome do produto" type="text" name="nome" id="nome">
-                <input placeholder="Quantidade" type="number" name="quantidade" id="quantidade">
+            <form id="FormularioAdicionarEstoque">
+                <input placeholder="Nome do produto" type="text" name="nome" id="nome" required>
+                <input placeholder="Quantidade" type="number" name="quantidade" id="quantidade" required>
                 <input type="submit" value="Adicionar" class="BotaoPrimario">
             </form>
         </div>
