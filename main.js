@@ -52,7 +52,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
             throw new Error('Falha na solicitação');
         }
 
-        let produtos_string = {'a': 'b'};
+        let produtos_string = '';
         
         for (produto in data.produtos) {
             produtos_string += `\n${produto.nome} ${produto.quantidade}`
