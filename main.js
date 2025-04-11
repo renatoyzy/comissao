@@ -52,13 +52,13 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
             throw new Error('Falha na solicitação');
         }
 
-        let produtos_final = {'a': 'b'};
+        let produtos_string = {'a': 'b'};
         
         for (produto in data.produtos) {
-            produtos_final[produto.nome] = produto.quantidade;
+            produtos_string += `\n${produto.nome} ${produto.quantidade}`
         }
 
-        document.getElementById("CampoDadosDb").innerHTML = produtos_final;
+        document.getElementById("CampoDadosDb").innerHTML = produtos_string;
         
     } catch (error) {
         console.error(error);
