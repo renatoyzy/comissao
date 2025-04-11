@@ -59,7 +59,7 @@ app.post('/adicionar-estoque', async (req, res) => {
                 db.collection('produtos').deleteOne({ nome }).then(async () => {
                     let result = db.collection('produtos').insertOne({ nome, quantidade: parseInt(quantidade)+parseInt(quantia_antiga) });
                     res.status(201).json({ certo: true });
-                    console.log(`${data_criacao} Produto modificado: ${await result}`)
+                    console.log(`${data_criacao} Produto modificado: ${await result._id}`)
                 });
             })
 
@@ -67,7 +67,7 @@ app.post('/adicionar-estoque', async (req, res) => {
 
             let result = db.collection('produtos').insertOne({ nome, quantidade: parseInt(quantidade) });
             res.status(201).json({ certo: true });
-            console.log(`${data_criacao} Produto inserido: ${await result}`)
+            console.log(`${data_criacao} Produto inserido: ${await result._id}`)
 
         }
 
