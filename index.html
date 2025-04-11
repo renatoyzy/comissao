@@ -43,30 +43,32 @@
             <p>
                 Dados:
                 <script>
-                    try {
-                    // Comunicação com o backend
-                    const response = await fetch('https://evolved-legible-spider.ngrok-free.app/obter-estoque', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ })
-                    });
+                    (async () => {
+                        try {
+                            // Comunicação com o backend
+                            const response = await fetch('https://evolved-legible-spider.ngrok-free.app/obter-estoque', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ })
+                            });
 
-                    const data = await response.json();
-                    
-                    if(data.error_message) return alert(`Erro de comunicação\n${data.error_message}`);
+                            const data = await response.json();
+                            
+                            if(data.error_message) return alert(`Erro de comunicação\n${data.error_message}`);
 
-                    if (!response.ok) {
-                        throw new Error('Falha na solicitação');
-                    }
+                            if (!response.ok) {
+                                throw new Error('Falha na solicitação');
+                            }
 
-                    document.write(data.produtos)
-                    
-                } catch (error) {
-                    console.error(error);
-                    alert(`Erro ao tentar comunicação\n${error}`);
-                }
+                            document.write(data.produtos)
+                            
+                        } catch (error) {
+                            console.error(error);
+                            alert(`Erro ao tentar comunicação\n${error}`);
+                        }
+                    })();
                 </script>
             </p>
     
