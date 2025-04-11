@@ -54,9 +54,9 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
 
         let produtos_final = {'a': 'b'};
         
-        data.produtos.forEach(produto => {
+        for (produto in produtos) {
             produtos_final[produto.nome] = produto.quantidade;
-        })
+        }
 
         document.getElementById("CampoDadosDb").innerHTML = produtos_final;
         
