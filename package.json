@@ -1,0 +1,19 @@
+{
+  "name": "comissao",
+  "version": "1.0.0",
+  "description": "Organização de vendas da comissão de formatura.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ngrok/ngrok": "^1.4.1",
+    "cor": "^0.0.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.15.0"
+  }
+}
