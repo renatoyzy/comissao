@@ -23,6 +23,8 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
         if (!response.ok) {
             throw new Error('Falha na solicitação');
         }
+
+        location.reload();
         
     } catch (error) {
         console.error(error);
