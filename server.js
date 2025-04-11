@@ -28,7 +28,7 @@ app.use(express.json());
 const uri = process.env.MONGODB_URI;
 
 // Conectar ao MongoDB
-const client = MongoClient.connect(uri, {timeoutMS: 5000});
+const client = MongoClient.connect(uri);
 client.then((client) => {
     db = client.db('comissao');  // Acessa o banco de dados padrão
     console.log('Conectado ao MongoDB');
