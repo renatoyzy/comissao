@@ -40,3 +40,24 @@ client.then((client) => {
 app.get('/', (req, res) => {
     res.send('Olá, mundo! Conectado ao MongoDB!');
 });
+
+// Ngrok
+(async () => {
+    // Conectar
+    const listener = await ngrok.forward({
+        addr: port,
+        authtoken: process.env.NGROK_AUTHTOKEN,
+        domain: process.env.NGROK_DOMAIN
+    });
+  
+    // Avisar
+    console.log(`Ngrok conectado`);
+})();
+
+// Iniciar o servidor
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
+});
+process.on('uncaughtException', (error) => {
+    return console.error(`Exceção não capturada: `+error);
+});
