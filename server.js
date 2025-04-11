@@ -95,7 +95,7 @@ app.post('/obter-estoque', async (req, res) => {
         res.status(201).json({ produtos });
 
     } catch (error) {
-        console.error('Erro ao adicionar estoque:', error);
+        console.error('Erro ao obter estoque:', error);
         res.status(500).json({ error_message: error.message });
     }
 });
