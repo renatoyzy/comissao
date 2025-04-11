@@ -55,19 +55,26 @@ app.post('/adicionar-estoque', async (req, res) => {
         if (await db.collection('produtos').findOne({ nome })) {
             
             db.collection('produtos').findOne({ nome }).then(produto_original => {
+
                 let quantia_antiga = produto_original.quantidade;
+
                 db.collection('produtos').deleteOne({ nome }).then(async () => {
-                    let result = db.collection('produtos').insertOne({ nome, quantidade: parseInt(quantidade)+parseInt(quantia_antiga) });
+
+                    db.collection('produtos').insertOne({ nome, quantidade: parseInt(quantidade)+parseInt(quantia_antiga) }).then(result => {
+                        console.log(`${data_criacao} Produto modificado: ${result._id}`);
+                    });
+
                     res.status(201).json({ certo: true });
-                    console.log(`${data_criacao} Produto modificado: ${await result._id}`)
+
                 });
             })
 
         } else {
 
-            let result = db.collection('produtos').insertOne({ nome, quantidade: parseInt(quantidade) });
+            db.collection('produtos').insertOne({ nome, quantidade: parseInt(quantidade) }).then(result => {
+                console.log(`${data_criacao} Produto inserido: ${result._id}`);
+            });
             res.status(201).json({ certo: true });
-            console.log(`${data_criacao} Produto inserido: ${await result._id}`)
 
         }
 
