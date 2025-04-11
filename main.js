@@ -31,3 +31,37 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
         alert(`Erro ao tentar comunicação\n${error}`);
     }
 });
+
+// Escrever estoque pro usuário
+(async () => {
+    try {
+        // Comunicação com o backend
+        const response = await fetch('https://evolved-legible-spider.ngrok-free.app/obter-estoque', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ })
+        });
+
+        const data = await response.json();
+        
+        if(data.error_message) return alert(`Erro de comunicação\n${data.error_message}`);
+
+        if (!response.ok) {
+            throw new Error('Falha na solicitação');
+        }
+
+        let produtos_final = {'a': 'b'};
+        
+        data.produtos.forEach(produto => {
+            produtos_final[produto.nome] = produto.quantidade;
+        })
+
+        document.getElementById("CampoDadosDb").innerHTML = produtos_final;
+        
+    } catch (error) {
+        console.error(error);
+        alert(`Erro ao tentar comunicação\n${error}`);
+    }
+})();
