@@ -35,7 +35,7 @@ client.then((client) => {
 }).catch((error) => {
     console.error('Erro ao conectar ao MongoDB:', error);
 });
-let db = (await client).db('comissao');
+//let db = (await client).db('comissao');
 
 // Rota de exemplo
 app.get('/', (req, res) => {
