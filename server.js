@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 (async () => {
     // Conectar
     const listener = await ngrok.forward({
-        addr: port,
+        addr: process.env,
         authtoken: process.env.NGROK_AUTHTOKEN,
         domain: process.env.NGROK_DOMAIN
     });
