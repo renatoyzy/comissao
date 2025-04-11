@@ -35,7 +35,7 @@ client.then((client) => {
 }).catch((error) => {
     console.error('Erro ao conectar ao MongoDB:', error);
 });
-//let db = (await client).db('comissao');
+let db = (await client).db('comissao');
 
 // Rota de exemplo
 app.get('/', (req, res) => {
@@ -90,7 +90,7 @@ app.post('/obter-estoque', async (req, res) => {
     try {
 
         // Verifica se produto já existe no banco de dados
-        let produtos = db.collection('produtos').find().map()
+        let produtos = db.collection('produtos').find().toArray();
 
         res.status(201).json({ produtos });
 
