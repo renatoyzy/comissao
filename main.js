@@ -78,7 +78,11 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
         
     } catch (error) {
         console.error(error);
-        alert(`Erro ao tentar comunicação\n${error}`);
+        if(`${error}`.includes(`TypeError: Failed to fetch`)) {
+            location.href = 'desligado';
+        } else {
+            alert(`Erro ao tentar comunicação\n${error}`);
+        };
     }
 })();
 
@@ -131,11 +135,6 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
         
     } catch (error) {
         console.error(error);
-
-        if(`${error}`.includes(`TypeError: Failed to fetch`)) {
-            location.href = 'desligado';
-        } else {
-            alert(`Erro ao tentar comunicação\n${error}`);
-        };
+        alert(`Erro ao tentar comunicação\n${error}`);
     };
 });
