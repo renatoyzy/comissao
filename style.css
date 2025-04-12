@@ -67,4 +67,8 @@ main {
         margin-top: 0px;
         margin-bottom: 20px;
     }
+
+    #CampoDadosDb {
+        font-variant: small-caps;
+    }
 }
