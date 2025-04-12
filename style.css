@@ -70,5 +70,6 @@ main {
 
     #CampoDadosDb {
         font-variant: small-caps;
+        margin-bottom: 20px;
     }
 }
