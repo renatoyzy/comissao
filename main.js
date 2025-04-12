@@ -81,8 +81,11 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
 document.getElementById('FormularioRegistrarVenda').addEventListener('submit', async (event) => {
     event.preventDefault();
     
-    const nome = document.getElementById('FormularioRegistrarVenda').elements["nome"].value.toUpperCase();
-    if(!document.getElementById('FormularioRegistrarVenda').elements["nome"].value) nome = "NÃO INFORMADO";
+    if(!document.getElementById('FormularioRegistrarVenda').elements["nome"].value) {
+        const nome = "NÃO INFORMADO";
+    } else {
+        const nome = document.getElementById('FormularioRegistrarVenda').elements["nome"].value.toUpperCase();
+    };
     const produto = document.getElementById('FormularioRegistrarVenda').elements["produto"].value.toLowerCase();
     const quantidade = parseInt(document.getElementById('FormularioRegistrarVenda').elements["quantidade"].value);
     const valor = parseFloat(document.getElementById('FormularioRegistrarVenda').elements["valor"].value.replaceAll(",","."));
