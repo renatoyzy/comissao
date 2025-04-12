@@ -27,6 +27,9 @@ main {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+        box-shadow: 0px 0px 0px 0.2px #C5C8CB inset;
+        padding: 10px;
+        border-radius: 10px;
     }
 
     form {
@@ -67,10 +70,17 @@ main {
     h1 {
         margin-top: 0px;
         margin-bottom: 20px;
+        font-size: 24px;
     }
 
     #CampoDadosDb {
         font-variant: small-caps;
         margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    input, select, textarea {
+         font-size: 16px !important;
     }
 }
