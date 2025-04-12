@@ -54,10 +54,15 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
 
         (() => {
 
+            document.getElementById('RegistrarVendaProduto').innerHTML = '';
             let produtos_string = [];
         
             data.produtos.forEach(produto => {
                 produtos_string.push(`${produto.nome} ${produto.quantidade}`);
+
+                document.getElementById('RegistrarVendaProduto').innerHTML += `
+                    <option value="${produto.name}">${produto.name}</option>
+                `;
             });
 
             produtos_string = produtos_string.join('<br>');
