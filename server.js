@@ -105,14 +105,14 @@ app.post('/obter-estoque', async (req, res) => {
 
 // Registrar venda de produto
 app.post('/registrar-venda', async (req, res) => {
-    const { nome, produto, quantidade, valor, vendedor, data_venda } = req.body;
+    const { nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda } = req.body;
 
     try {
-        if (!nome || !produto || !quantidade || !valor || !vendedor || !data_venda) {
+        if (!nome || !produto || !quantidade || !valor || !metodo_de_pagamento || !fiado || !vendedor || !data_venda) {
             return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
         }
 
-        db.collection('vendas').insertOne({ nome, produto, quantidade, valor, vendedor, data_venda }).then(result => {
+        db.collection('vendas').insertOne({ nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda }).then(result => {
             console.log(`${data_venda} Venda inserida: ${result.insertedId}`);
             
             db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {

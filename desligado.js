@@ -1,0 +1,3 @@
+window.onbeforeunload(() => {
+    location.href = './';
+});
