@@ -61,7 +61,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
                 produtos_string.push(`${produto.nome} ${produto.quantidade}`);
 
                 document.getElementById('RegistrarVendaProduto').innerHTML += `
-                    <option value="${produto.name}">${produto.name}</option>
+                    <option value="${produto.nome}">${produto.nome}</option>
                 `;
             });
 

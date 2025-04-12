@@ -34,7 +34,7 @@ main {
         gap: 9px;
     }
 
-    input {
+    input, select {
         border-width: 0.2px;
         border-radius: 5px;
         border: none;
@@ -44,7 +44,7 @@ main {
         padding: 8px;
     }
 
-    input:hover {
+    input:hover, select:hover {
         box-shadow: 0px 0px 0px 1px #4F5A63 inset;
         border: none;
     }
