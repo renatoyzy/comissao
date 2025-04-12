@@ -1,3 +1,8 @@
+// Vendedor identificado?
+if(!sessionStorage.getItem('vendedor')) {
+    location.href = 'identificar';
+};
+
 // Adicionar estoque no banco de dados
 document.getElementById('FormularioAdicionarEstoque').addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -91,6 +96,7 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
     const produto = document.getElementById('FormularioRegistrarVenda').elements["produto"].value.toLowerCase();
     const quantidade = parseInt(document.getElementById('FormularioRegistrarVenda').elements["quantidade"].value);
     const valor = parseFloat(document.getElementById('FormularioRegistrarVenda').elements["valor"].value.replaceAll(",","."));
+    const vendedor = sessionStorage.getItem('vendedor');
     const data_venda = new Date();
 
     try {
@@ -100,7 +106,7 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome, produto, quantidade, valor, data_venda })
+            body: JSON.stringify({ nome, produto, quantidade, valor, vendedor, data_venda })
         });
 
         const data = await response.json();
