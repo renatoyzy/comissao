@@ -1,3 +1,4 @@
-window.onbeforeunload = (() => {
-    location.href = './';
-});
+function closeIt() {
+  return location.href = './';
+};
+window.onbeforeunload = closeIt;
