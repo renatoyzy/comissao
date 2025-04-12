@@ -83,4 +83,11 @@ main {
     input, select, textarea {
          font-size: 16px !important;
     }
+    main {
+        flex-direction: column;
+        gap: 20px 0;
+    }
+    * {
+        overflow: scroll;
+    }
 }
