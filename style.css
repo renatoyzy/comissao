@@ -21,6 +21,7 @@ main {
     background-color: white;
     display: flex;
     margin: 20px;
+    gap: 0 20px;
 
     .CorpoElemento {
         display: flex;
@@ -40,8 +41,8 @@ main {
         border: none;
         box-shadow: 0px 0px 0px 0.2px #C5C8CB inset;
         transition-duration: 0.4s;
-        width: 80%;
         padding: 8px;
+        background-color: white;
     }
 
     input:hover, select:hover {
