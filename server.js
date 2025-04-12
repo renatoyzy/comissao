@@ -3,6 +3,8 @@ const express = require('express');
 const { MongoClient, Db } = require('mongodb');
 const cors = require('cors');
 const ngrok = require("@ngrok/ngrok");
+const fs = require('node:fs');
+const xlsx = require('xlsx');
 require('dotenv').config();
 
 // Definições
@@ -35,7 +37,7 @@ client.then((client) => {
 }).catch((error) => {
     console.error('Erro ao conectar ao MongoDB:', error);
 });
-//let db = (await client).db('comissao');
+let db = (await client).db('comissao');
 
 // Rota de exemplo
 app.get('/', (req, res) => {
@@ -131,6 +133,38 @@ app.post('/registrar-venda', async (req, res) => {
         console.error('Erro ao registrar venda:', error);
         res.status(500).json({ error_message: error.message });
     }
+});
+
+// Gerar tabela
+app.post('/download', async (req, res) => {
+    const dados = await db.collection('vendas').find({}).toArray();
+
+    if(dados.length === 0) {
+        return res.status(404).send('Nenhum dado encontrado.');
+    };
+
+    try {
+        
+        // Gera o Excel na memória
+        const worksheet = xlsx.utils.json_to_sheet(dados);
+        const workbook = xlsx.utils.book_new();
+        xlsx.utils.book_append_sheet(workbook, worksheet, 'Dados');
+
+        const excelBuffer = xlsx.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+
+        // Envia o arquivo como download
+        res.setHeader('Content-Disposition', 'attachment; filename=exportacao.xlsx');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+        const readStream = new stream.PassThrough();
+        readStream.end(excelBuffer);
+        readStream.pipe(res);
+
+    } catch (error) {
+        console.error('Erro ao registrar venda:', error);
+        res.status(500).json({ error_message: error.message });
+    }
+
 });
 
 // Ngrok

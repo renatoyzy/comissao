@@ -3,5 +3,4 @@ document.getElementById('FormularioEntrarVendedor').addEventListener('submit', (
 
     sessionStorage.setItem('vendedor', document.getElementById('FormularioEntrarVendedor').elements["nome"].value.toUpperCase());
     location.href = './';
-
 })
