@@ -20,8 +20,8 @@
     
             <form id="FormularioRegistrarVenda">
                 <label for="nome">Comprador (opcional)</label>
-                <input placeholder="Comprador" type="text" name="nome" id="nome">
-                <label for="RegistrarVendaProduto">Valor pago</label>
+                <input placeholder="Renato Augusto Almeida dos Santos" type="text" name="nome" id="nome">
+                <label for="RegistrarVendaProduto">Produto comprado</label>
                 <select name="produto" id="RegistrarVendaProduto">
                     <option value="volvo">Volvo</option>
                     <option value="saab">Saab</option>
@@ -40,8 +40,10 @@
             <h1>Adicionar estoque</h1>
     
             <form id="FormularioAdicionarEstoque">
-                <input placeholder="Nome do produto" type="text" name="nome" id="nome" required>
-                <input placeholder="Quantidade" type="number" name="quantidade" id="quantidade" required>
+                <label for="nome">Nome do produto</label>
+                <input placeholder="Geladinho" type="text" name="nome" id="nome" required>
+                <label for="quantidade">Quantidade a adicionar</label>
+                <input placeholder="99" type="number" name="quantidade" id="quantidade" required>
                 <input type="submit" value="Adicionar" class="BotaoPrimario">
             </form>
         </div>
