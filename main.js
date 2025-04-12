@@ -62,6 +62,10 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
 
             document.getElementById("CampoDadosDb").innerHTML = produtos_string;
 
+            alert('oi')
+            console.log(data.produtos)
+            console.log(produtos_string)
+
         })();
         
     } catch (error) {
