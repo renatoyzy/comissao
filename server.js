@@ -118,7 +118,7 @@ app.post('/registrar-venda', async (req, res) => {
                 let nova_data = new Date();
 
                 db.collection('produtos').deleteOne({ nome: produto }).then(() => {
-                    db.collection('produtos').insertOne({ nome: novo_nome, quantidade: nova_quantidade, data_criacao: nova_data});
+                    db.collection('produtos').insertOne({ nome: novo_nome, quantidade: nova_quantidade});
                 });
             });
 
