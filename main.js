@@ -132,7 +132,7 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
     } catch (error) {
         console.error(error);
 
-        if(`${error}` == `TypeError: Failed to fetch`) {
+        if(`${error}`.includes(`TypeError: Failed to fetch`)) {
             location.href = 'desligado';
         } else {
             alert(`Erro ao tentar comunicação\n${error}`);
