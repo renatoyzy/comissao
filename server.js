@@ -109,11 +109,6 @@ app.post('/registrar-venda', async (req, res) => {
             return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
         }
 
-        // Verifica se produto já existe no banco de dados
-        db.collection('produtos').insertOne({ nome, quantidade: parseInt(quantidade) }).then(result => {
-            console.log(`${data_criacao} Produto inserido: ${result.insertedId}`);
-        });
-
         db.collection('vendas').insertOne({ nome, produto, quantidade, valor, data_venda }).then(result => {
             console.log(`${data_criacao} Venda inserida: ${result.insertedId}`);
             
