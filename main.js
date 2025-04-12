@@ -55,7 +55,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
         let produtos_string = '';
         
         for (produto in data.produtos) {
-            produtos_string += `\n${produto.nome} ${produto.quantidade}`
+            produtos_string = produtos_string + `\n${produto.nome} ${produto.quantidade}`
         }
 
         document.getElementById("CampoDadosDb").innerHTML = produtos_string;
