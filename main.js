@@ -97,7 +97,15 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
     const quantidade = parseInt(document.getElementById('FormularioRegistrarVenda').elements["quantidade"].value);
     const valor = parseFloat(document.getElementById('FormularioRegistrarVenda').elements["valor"].value.replaceAll(",","."));
     const vendedor = sessionStorage.getItem('vendedor');
-    const data_venda = new Date();
+    const data_venda = new Intl.DateTimeFormat('pt-BR', {
+        timeZone: 'America/Sao_Paulo',
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+    }).format(new Date()).replace(',', '');
 
     try {
         // Comunicação com o backend
