@@ -76,3 +76,40 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
         alert(`Erro ao tentar comunicação\n${error}`);
     }
 })();
+
+// Registrar venda no banco de dados
+document.getElementById('FormularioRegistrarVenda').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    
+    const nome = document.getElementById('FormularioRegistrarVenda').elements["nome"].value.toUpperCase();
+    if(!document.getElementById('FormularioRegistrarVenda').elements["nome"].value) nome = "NÃO INFORMADO";
+    const produto = document.getElementById('FormularioRegistrarVenda').elements["produto"].value.toLowerCase();
+    const quantidade = parseInt(document.getElementById('FormularioRegistrarVenda').elements["quantidade"].value);
+    const valor = parseFloat(document.getElementById('FormularioRegistrarVenda').elements["valor"].value.replaceAll(",","."));
+    const data_venda = new Date();
+
+    try {
+        // Comunicação com o backend
+        const response = await fetch('https://evolved-legible-spider.ngrok-free.app/registrar-venda', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nome, produto, quantidade, valor, data_venda })
+        });
+
+        const data = await response.json();
+        
+        if(data.error_message) return alert(`Erro de comunicação\n${data.error_message}`);
+
+        if (!response.ok) {
+            throw new Error('Falha na solicitação');
+        }
+
+        location.reload();
+        
+    } catch (error) {
+        console.error(error);
+        alert(`Erro ao tentar comunicação\n${error}`);
+    }
+});

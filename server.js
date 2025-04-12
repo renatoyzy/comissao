@@ -35,7 +35,7 @@ client.then((client) => {
 }).catch((error) => {
     console.error('Erro ao conectar ao MongoDB:', error);
 });
-//let db = (await client).db('comissao');
+let db = (await client).db('comissao');
 
 // Rota de exemplo
 app.get('/', (req, res) => {
@@ -96,6 +96,44 @@ app.post('/obter-estoque', async (req, res) => {
 
     } catch (error) {
         console.error('Erro ao obter estoque:', error);
+        res.status(500).json({ error_message: error.message });
+    }
+});
+
+// Registrar venda de produto
+app.post('/registrar-venda', async (req, res) => {
+    const { nome, produto, quantidade, valor, data_venda } = req.body;
+
+    try {
+        if (!nome || !produto || !quantidade || !valor || !data_venda) {
+            return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
+        }
+
+        // Verifica se produto já existe no banco de dados
+        db.collection('produtos').insertOne({ nome, quantidade: parseInt(quantidade) }).then(result => {
+            console.log(`${data_criacao} Produto inserido: ${result.insertedId}`);
+        });
+
+        db.collection('vendas').insertOne({ nome, produto, quantidade, valor, data_venda }).then(result => {
+            console.log(`${data_criacao} Venda inserida: ${result.insertedId}`);
+            
+            db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
+                let novo_nome = produto_achado.nome;
+                let nova_quantidade = parseInt(produto_achado.quantidade)-parseInt(quantidade);
+                let nova_data = new Date();
+
+                db.collection('produtos').deleteOne({ nome: produto }).then(() => {
+                    db.collection('produtos').insertOne({ nome: novo_nome, quantidade: nova_quantidade, data_criacao: nova_data});
+                });
+            });
+
+        });
+
+        res.status(201).json({ certo: true });
+
+
+    } catch (error) {
+        console.error('Erro ao registrar venda:', error);
         res.status(500).json({ error_message: error.message });
     }
 });
