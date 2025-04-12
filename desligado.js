@@ -1,4 +1,5 @@
 function closeIt() {
-  return location.href = './';
+    window.location.href = './';
+    return "oi"
 };
 window.onbeforeunload = closeIt;
