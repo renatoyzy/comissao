@@ -5,6 +5,7 @@ const cors = require('cors');
 const ngrok = require("@ngrok/ngrok");
 const fs = require('node:fs');
 const xlsx = require('xlsx');
+const stream = require('stream');
 require('dotenv').config();
 
 // Definições
@@ -37,7 +38,7 @@ client.then((client) => {
 }).catch((error) => {
     console.error('Erro ao conectar ao MongoDB:', error);
 });
-let db = (await client).db('comissao');
+//let db = (await client).db('comissao');
 
 // Rota de exemplo
 app.get('/', (req, res) => {
@@ -136,7 +137,7 @@ app.post('/registrar-venda', async (req, res) => {
 });
 
 // Gerar tabela
-app.post('/download', async (req, res) => {
+app.get('/download', async (req, res) => {
     const dados = await db.collection('vendas').find({}).toArray();
 
     if(dados.length === 0) {
