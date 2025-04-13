@@ -78,7 +78,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
         
     } catch (error) {
         console.error(error);
-        if(`${error}`.includes(`TypeError: Failed to fetch`)) {
+        if(`${error}`.includes(`TypeError: Failed to fetch`) || `${error}`.includes(`TypeError: Load failed`)) {
             location.href = 'desligado';
         } else {
             alert(`Erro ao tentar comunicação\n${error}`);
