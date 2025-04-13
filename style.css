@@ -62,6 +62,8 @@ main {
         box-shadow: none;
         padding: 8px;
         border-radius: 5px;
+        font-size: medium;
+        font-weight: normal;
     }
     .BotaoPrimario:hover {
         background-color: #14222F;
