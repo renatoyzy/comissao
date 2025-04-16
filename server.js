@@ -112,26 +112,28 @@ app.post('/registrar-venda', async (req, res) => {
             return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
         };
 
-        let valor2 = valor || (parseFloat(await db.collection('produtos').findOne({ nome: produto }).valor_da_unidade) * quantidade);
+        db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
 
-        db.collection('vendas').insertOne({ nome, produto, quantidade, valor: (await valor2), metodo_de_pagamento, fiado, vendedor, data_venda }).then(result => {
-            console.log(`${data_venda} Venda inserida: ${result.insertedId}`);
-            
-            db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
+            if(!valor) {
+                valor = (parseFloat(produto_achado.valor_da_unidade) * parseInt(quantidade));
+            };
+
+            db.collection('vendas').insertOne({ nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda }).then(result => {
+                console.log(`${data_venda} Venda inserida: ${result.insertedId}`);
+                
                 let novo_nome = produto_achado.nome;
                 let nova_quantidade = parseInt(produto_achado.quantidade)-parseInt(quantidade);
                 let nova_data = new Date();
                 let novo_valor = produto_achado.valor_da_unidade;
-
+    
                 db.collection('produtos').deleteOne({ nome: produto }).then(() => {
                     db.collection('produtos').insertOne({ nome: novo_nome, quantidade: nova_quantidade, valor_da_unidade: novo_valor});
-                    return res.status(201).json({ certo: true });
+                    res.status(201).json({ certo: true });
                 });
+    
             });
 
         });
-
-        res.status(500).json({ error_message: 'Erro desconhecido ao realizar venda.' });
 
     } catch (error) {
         console.error('Erro ao registrar venda:', error);
