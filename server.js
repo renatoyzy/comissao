@@ -114,9 +114,7 @@ app.post('/registrar-venda', async (req, res) => {
 
         db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
 
-            if(!valor) {
-                valor = (parseFloat(produto_achado.valor_da_unidade) * parseInt(quantidade));
-            };
+            if(!valor) valor = (parseFloat(produto_achado.valor_da_unidade) * parseInt(quantidade));
 
             db.collection('vendas').insertOne({ nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda }).then(result => {
                 console.log(`${data_venda} Venda inserida: ${result.insertedId}`);
