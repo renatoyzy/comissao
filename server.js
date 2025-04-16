@@ -105,7 +105,7 @@ app.post('/obter-estoque', async (req, res) => {
 
 // Registrar venda de produto
 app.post('/registrar-venda', (req, res) => {
-    const { nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda } = req.body;
+    let { nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda } = req.body;
 
     try {
         if (!nome || !produto || !quantidade || !metodo_de_pagamento || !fiado || !vendedor || !data_venda) {
