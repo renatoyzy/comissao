@@ -104,7 +104,7 @@ app.post('/obter-estoque', async (req, res) => {
 });
 
 // Registrar venda de produto
-app.post('/registrar-venda', (req, res) => {
+app.post('/registrar-venda', async (req, res) => {
     let { nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda } = req.body;
 
     try {
@@ -112,13 +112,9 @@ app.post('/registrar-venda', (req, res) => {
             return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
         };
 
-        if(!valor) {
-            db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
-                valor = (parseFloat(produto_achado.valor_da_unidade) * quantidade);
-            });
-        };
+        let valor = valor || (parseFloat(await db.collection('produtos').findOne({ nome: produto }).valor_da_unidade) * quantidade);
 
-        db.collection('vendas').insertOne({ nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda }).then(result => {
+        db.collection('vendas').insertOne({ nome, produto, quantidade, valor: (await valor), metodo_de_pagamento, fiado, vendedor, data_venda }).then(result => {
             console.log(`${data_venda} Venda inserida: ${result.insertedId}`);
             
             db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
