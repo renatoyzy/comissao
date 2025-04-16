@@ -7,7 +7,7 @@ if(!sessionStorage.getItem('vendedor')) {
 document.getElementById('FormularioAdicionarEstoque').addEventListener('submit', async (event) => {
     event.preventDefault();
     
-    const nome = document.getElementById('FormularioAdicionarEstoque').elements["nome"].value.toLowerCase();
+    const nome = document.getElementById('FormularioAdicionarEstoque').elements["nome"].value.toLowerCase().replaceAll(' ', '');
     const valor_da_unidade = parseFloat(document.getElementById('FormularioAdicionarEstoque').elements["valor"].value.replaceAll(',', '.'));
     const quantidade = document.getElementById('FormularioAdicionarEstoque').elements["quantidade"].value;
     const data_criacao = new Date();
