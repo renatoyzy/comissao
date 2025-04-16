@@ -125,9 +125,10 @@ app.post('/registrar-venda', (req, res) => {
                 let novo_nome = produto_achado.nome;
                 let nova_quantidade = parseInt(produto_achado.quantidade)-parseInt(quantidade);
                 let nova_data = new Date();
+                let novo_valor = produto_achado.valor_da_unidade;
 
                 db.collection('produtos').deleteOne({ nome: produto }).then(() => {
-                    db.collection('produtos').insertOne({ nome: novo_nome, quantidade: nova_quantidade});
+                    db.collection('produtos').insertOne({ nome: novo_nome, quantidade: nova_quantidade, valor_da_unidade: novo_valor});
                 });
             });
 
