@@ -129,12 +129,11 @@ app.post('/registrar-venda', (req, res) => {
 
                 db.collection('produtos').deleteOne({ nome: produto }).then(() => {
                     db.collection('produtos').insertOne({ nome: novo_nome, quantidade: nova_quantidade, valor_da_unidade: novo_valor});
+                    res.status(201).json({ certo: true });
                 });
             });
 
         });
-
-        res.status(201).json({ certo: true });
 
 
     } catch (error) {
