@@ -112,9 +112,9 @@ app.post('/registrar-venda', async (req, res) => {
             return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
         };
 
-        let valor = valor || (parseFloat(await db.collection('produtos').findOne({ nome: produto }).valor_da_unidade) * quantidade);
+        let valor2 = valor || (parseFloat(await db.collection('produtos').findOne({ nome: produto }).valor_da_unidade) * quantidade);
 
-        db.collection('vendas').insertOne({ nome, produto, quantidade, valor: (await valor), metodo_de_pagamento, fiado, vendedor, data_venda }).then(result => {
+        db.collection('vendas').insertOne({ nome, produto, quantidade, valor: (await valor2), metodo_de_pagamento, fiado, vendedor, data_venda }).then(result => {
             console.log(`${data_venda} Venda inserida: ${result.insertedId}`);
             
             db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
