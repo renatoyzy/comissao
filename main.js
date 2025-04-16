@@ -99,8 +99,7 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
     const nome = nome_pre;
     const produto = document.getElementById('FormularioRegistrarVenda').elements["produto"].value.toLowerCase();
     const quantidade = parseInt(document.getElementById('FormularioRegistrarVenda').elements["quantidade"].value);
-    //const valor = parseFloat(document.getElementById('FormularioRegistrarVenda').elements["valor"].value.replaceAll(",","."));
-    const valor = 2*quantidade;
+    const valor = parseFloat(document.getElementById('FormularioRegistrarVenda').elements["valor"].value.replaceAll(",","."));
     const metodo_de_pagamento = document.getElementById('FormularioRegistrarVenda').elements["metodo_de_pagamento"].value.toUpperCase();
     const fiado = document.getElementById('FormularioRegistrarVenda').elements["fiado"].value.toUpperCase();
     const vendedor = sessionStorage.getItem('vendedor');
