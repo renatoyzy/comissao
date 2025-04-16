@@ -8,6 +8,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
     event.preventDefault();
     
     const nome = document.getElementById('FormularioAdicionarEstoque').elements["nome"].value.toLowerCase();
+    const valor_da_unidade = parseFloat(document.getElementById('FormularioAdicionarEstoque').elements["valor"].value.replaceAll(',', '.'));
     const quantidade = document.getElementById('FormularioAdicionarEstoque').elements["quantidade"].value;
     const data_criacao = new Date();
 
@@ -18,7 +19,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome, quantidade, data_criacao })
+            body: JSON.stringify({ nome, quantidade, data_criacao, valor_da_unidade })
         });
 
         const data = await response.json();
@@ -63,7 +64,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
             let produtos_string = [];
         
             data.produtos.forEach(produto => {
-                produtos_string.push(`${produto.nome} ${produto.quantidade}`);
+                produtos_string.push(`${produto.nome} ${produto.quantidade} - R$${produto.valor_da_unidade}`);
 
                 document.getElementById('RegistrarVendaProduto').innerHTML += `
                     <option value="${produto.nome}">${produto.nome}</option>
@@ -99,13 +100,7 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
     const nome = nome_pre;
     const produto = document.getElementById('FormularioRegistrarVenda').elements["produto"].value.toLowerCase();
     const quantidade = parseInt(document.getElementById('FormularioRegistrarVenda').elements["quantidade"].value);
-    let valor_pre;
-    if(!document.getElementById('FormularioRegistrarVenda').elements["valor"].value) {
-        valor_pre = 2 * parseInt(document.getElementById('FormularioRegistrarVenda').elements["quantidade"].value);
-    } else {
-        valor_pre = parseFloat(document.getElementById('FormularioRegistrarVenda').elements["valor"].value.replaceAll(",","."));
-    };
-    const valor = valor_pre;
+    const valor = parseFloat(document.getElementById('FormularioRegistrarVenda').elements["valor"].value.replaceAll(",","."));
     const metodo_de_pagamento = document.getElementById('FormularioRegistrarVenda').elements["metodo_de_pagamento"].value.toUpperCase();
     const fiado = document.getElementById('FormularioRegistrarVenda').elements["fiado"].value.toUpperCase();
     const vendedor = sessionStorage.getItem('vendedor');
