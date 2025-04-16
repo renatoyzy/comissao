@@ -64,7 +64,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
             let produtos_string = [];
         
             data.produtos.forEach(produto => {
-                produtos_string.push(`${produto.nome} ${produto.quantidade} - R$${produto.valor_da_unidade}`);
+                produtos_string.push(`${produto.nome} ${produto.quantidade} (R$${produto.valor_da_unidade})`);
 
                 document.getElementById('RegistrarVendaProduto').innerHTML += `
                     <option value="${produto.nome}">${produto.nome}</option>
