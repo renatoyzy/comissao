@@ -110,7 +110,7 @@ app.post('/registrar-venda', (req, res) => {
     try {
         if (!nome || !produto || !quantidade || !metodo_de_pagamento || !fiado || !vendedor || !data_venda) {
             return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
-        }
+        };
 
         if(!valor) {
             db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
