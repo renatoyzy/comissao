@@ -63,7 +63,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
             document.getElementById('RegistrarVendaProduto').innerHTML = '';
             let produtos_string = [];
         
-            data.produtos.forEach(produto => {
+            data.produtos.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(produto => {
                 produtos_string.push(`${produto.nome} ${produto.quantidade} (R$${produto.valor_da_unidade})`);
 
                 document.getElementById('RegistrarVendaProduto').innerHTML += `
