@@ -250,7 +250,11 @@ app.get('/devedores', async (req, res) => {
         const excelBuffer = xlsx.write(workbook, { type: 'buffer', bookType: 'xlsx' });
 
         // Envia o arquivo como download
-        res.setHeader('Content-Disposition', 'attachment; filename=devedores.xlsx');
+        res.setHeader('Content-Disposition', `attachment; filename=Planilha de devedores ${new Date().toLocaleDateString('pt-BR', {
+            month: '2-digit',
+            day: '2-digit',
+            year: 'numeric'
+        }).replaceAll('/','.')}.xlsx`);
         res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
         const readStream = new stream.PassThrough();
