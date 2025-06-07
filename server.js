@@ -39,7 +39,7 @@ client.then((client) => {
 }).catch((error) => {
     console.error('Erro ao conectar ao MongoDB:', error);
 });
-let db = (await client).db('comissao');
+//let db = (await client).db('comissao');
 
 // Rota de exemplo
 app.get('/', (req, res) => {
@@ -183,7 +183,7 @@ app.post('/pagar-divida', async (req, res) => {
             if(!devedor_achado) return res.status(404).json({ error_message: 'Devedor não encontrado no banco.' });
 
             db.collection('devedores').deleteOne({nome: devedor_achado.nome}).then(() => {
-                db.collection('devedores').insertOne({nome: devedor_achado.nome, divida: devedor_achado.divida-valor});
+                if(devedor_achado.divida-valor > 0) db.collection('devedores').insertOne({nome: devedor_achado.nome, divida: devedor_achado.divida-valor});
                 res.status(201).json({ certo: true });
             });
 

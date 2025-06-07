@@ -101,6 +101,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
 
         (() => {
 
+            document.getElementById('NomeDevedorPagando').innerHTML = '';
             let devedores_string = [];
         
             data.devedores.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(devedor => {
