@@ -36,6 +36,9 @@ main {
 
     .CorpoElemento.Principal {
         width: 25dvw;
+        @media screen and (max-width: 767px) {
+            width: unset;
+        }
     }
 
     .CorpoElemento.Categoria {
@@ -111,9 +114,6 @@ main {
     }
     * {
         overflow: scroll;
-    }
-    .CorpoElemento.Principal {
-        width: unset;
     }
     #Copyright {
         display: none;
