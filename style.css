@@ -34,6 +34,16 @@ main {
         border-radius: 10px;
     }
 
+    .CorpoElemento.Principal {
+        width: 25dvw;
+    }
+
+    .CorpoElemento.Categoria {
+        box-shadow: none;
+        padding: unset;
+        gap: 12px;
+    }
+
     form {
         display: flex;
         flex-direction: column;
@@ -81,6 +91,13 @@ main {
         font-variant: small-caps;
         margin-bottom: 20px;
     }
+}
+
+#Copyright {
+    position: absolute;
+    top: 96dvh;
+    width: 99dvw;
+    text-align: end;
 }
 
 @media screen and (max-width: 767px) {
