@@ -112,4 +112,10 @@ main {
     * {
         overflow: scroll;
     }
+    .CorpoElemento.Principal {
+        width: unset;
+    }
+    #Copyright {
+        display: none;
+    }
 }
