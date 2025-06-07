@@ -39,7 +39,7 @@ client.then((client) => {
 }).catch((error) => {
     console.error('Erro ao conectar ao MongoDB:', error);
 });
-//let db = (await client).db('comissao');
+let db = (await client).db('comissao');
 
 // Rota de exemplo
 app.get('/', (req, res) => {
@@ -170,6 +170,29 @@ app.post('/registrar-venda', async (req, res) => {
 
 // Pagar dívida
 app.post('/pagar-divida', async (req, res) => {
+
+    const { devedor, valor } = req.body;
+
+    try {
+        if (!devedor || !valor) {
+            return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
+        }
+
+        db.collection('devedores').findOne({nome: devedor}).then(devedor_achado => {
+
+            if(!devedor_achado) return res.status(404).json({ error_message: 'Devedor não encontrado no banco.' });
+
+            db.collection('devedores').deleteOne({nome: devedor_achado.nome}).then(() => {
+                db.collection('devedores').insertOne({nome: devedor_achado.nome, divida: devedor_achado.divida-valor});
+                res.status(201).json({ certo: true });
+            });
+
+        });
+
+    } catch (error) {
+        console.error('Erro ao pagar dívida:', error);
+        res.status(500).json({ error_message: error.message });
+    }
 
 });
 
