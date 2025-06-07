@@ -153,7 +153,6 @@ app.post('/registrar-venda', async (req, res) => {
                 if(devedor_achado) {
                     db.collection('devedores').deleteOne({ nome: devedor_achado.nome }).then(() => {
                         db.collection('devedores').insertOne({ nome: devedor_achado.nome, divida: devedor_achado.divida+valor});
-                        res.status(201).json({ certo: true });
                     });
                 } else {
                     db.collection('devedores').insertOne({nome: nome, divida: valor});
@@ -167,6 +166,11 @@ app.post('/registrar-venda', async (req, res) => {
         console.error('Erro ao registrar venda:', error);
         res.status(500).json({ error_message: error.message });
     }
+});
+
+// Pagar dívida
+app.post('/pagar-divida', async (req, res) => {
+
 });
 
 // Gerar tabela

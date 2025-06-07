@@ -95,6 +95,22 @@
                 ">Baixar planilha de cobrança</button></a>
             </div>
 
+            <div class="CorpoElemento">
+                <h1>Pagar dívida</h1>
+                <form id="FormularioPagarDivida">
+                    <label for="NomeDevedorPagando">Nome</label>
+                    <select name="devedor" id="NomeDevedorPagando" required>
+                        <option value="volvo">Aguarde...</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                    <label for="ValorDivida">Valor pago</label>
+                    <input placeholder="0,00" type="text" name="valor" id="ValorDivida" required>
+                    <input type="submit" class="BotaoPrimario" value="Pagar">
+                </form>
+            </div>
+
         </div>
         
     </main>
