@@ -151,7 +151,10 @@ app.post('/registrar-venda', async (req, res) => {
             db.collection('devedores').findOne({ nome: nome }).then(devedor_achado => {
 
                 if(devedor_achado) {
-                    db.collection('devedores').findOneAndUpdate({nome: nome}, {divida: devedor_achado.divida+valor})
+                    db.collection('devedores').deleteOne({ nome: devedor_achado.nome }).then(() => {
+                        db.collection('devedores').insertOne({ nome: devedor_achado.nome, divida: devedor_achado.divida+valor});
+                        res.status(201).json({ certo: true });
+                    });
                 } else {
                     db.collection('devedores').insertOne({nome: nome, divida: valor});
                 };
@@ -184,7 +187,11 @@ app.get('/download', async (req, res) => {
         const excelBuffer = xlsx.write(workbook, { type: 'buffer', bookType: 'xlsx' });
 
         // Envia o arquivo como download
-        res.setHeader('Content-Disposition', 'attachment; filename=exportacao.xlsx');
+        res.setHeader('Content-Disposition', `attachment; filename=Planilha de vendas ${new Date().toLocaleDateString('pt-BR', {
+            month: '2-digit',
+            day: '2-digit',
+            year: 'numeric'
+        }).replaceAll('/','.')}.xlsx`);
         res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
         const readStream = new stream.PassThrough();
