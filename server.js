@@ -1,12 +1,10 @@
 // Importações
 const express = require('express');
-const { MongoClient, Db } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const cors = require('cors');
 const ngrok = require("@ngrok/ngrok");
-const fs = require('node:fs');
 const xlsx = require('xlsx');
 const stream = require('stream');
-const { isNullOrUndefined } = require('node:util');
 require('dotenv').config();
 
 // Definições
