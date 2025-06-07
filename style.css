@@ -29,7 +29,7 @@ main {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        box-shadow: 0px 0px 0px 0.2px #C5C8CB inset;
+        box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
         padding: 10px;
         border-radius: 10px;
     }
@@ -55,11 +55,11 @@ main {
 
     input, select {
         border-width: 0.2px;
-        border-radius: 5px;
+        border-radius: 8px;
         border: none;
-        box-shadow: 0px 0px 0px 0.2px #C5C8CB inset;
+        box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
         transition-duration: 0.4s;
-        padding: 8px;
+        padding: 10px;
         background-color: white;
     }
 
@@ -101,6 +101,7 @@ main {
     top: 96dvh;
     width: 99dvw;
     text-align: end;
+    color: #4F5A63;
 }
 
 @media screen and (max-width: 767px) {
