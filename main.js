@@ -38,11 +38,14 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
     }
 });
 
-// Escrever estoque pro usuário
+// Escrever estoque e fiados pro usuário
 (async () => {
     try {
+
+        // Escrever estoque
+
         // Comunicação com o backend
-        const response = await fetch('https://evolved-legible-spider.ngrok-free.app/obter-estoque', {
+        let response = await fetch('https://evolved-legible-spider.ngrok-free.app/obter-estoque', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -50,7 +53,7 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
             body: JSON.stringify({ })
         });
 
-        const data = await response.json();
+        let data = await response.json();
         
         if(data.error_message) return alert(`Erro de comunicação\n${data.error_message}`);
 
@@ -74,6 +77,39 @@ document.getElementById('FormularioAdicionarEstoque').addEventListener('submit',
             produtos_string = produtos_string.join('<br>');
 
             document.getElementById("CampoDadosDb").innerHTML = produtos_string;
+
+        })();
+
+        // Escrever fiados
+
+        // Comunicação com o backend
+        response = await fetch('https://evolved-legible-spider.ngrok-free.app/obter-devedores', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ })
+        });
+
+        data = await response.json();
+        
+        if(data.error_message) return alert(`Erro de comunicação\n${data.error_message}`);
+
+        if (!response.ok) {
+            throw new Error('Falha na solicitação');
+        }
+
+        (() => {
+
+            let devedores_string = [];
+        
+            data.devedores.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(devedor => {
+                devedores_string.push(`${devedor.nome}: R$${devedor.divida}`);
+            });
+
+            devedores_string = devedores_string.join('<br>');
+
+            document.getElementById("CampoDevedoresDb").innerHTML = devedores_string;
 
         })();
         
