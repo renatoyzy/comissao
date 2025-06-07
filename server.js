@@ -6,6 +6,7 @@ const ngrok = require("@ngrok/ngrok");
 const fs = require('node:fs');
 const xlsx = require('xlsx');
 const stream = require('stream');
+const { isNullOrUndefined } = require('node:util');
 require('dotenv').config();
 
 // Definições
@@ -38,7 +39,7 @@ client.then((client) => {
 }).catch((error) => {
     console.error('Erro ao conectar ao MongoDB:', error);
 });
-//let db = (await client).db('comissao');
+let db = (await client).db('comissao');
 
 // Rota de exemplo
 app.get('/', (req, res) => {
@@ -103,6 +104,22 @@ app.post('/obter-estoque', async (req, res) => {
     }
 });
 
+// Obter devedores pro front-end
+app.post('/obter-devedores', async (req, res) => {
+
+    try {
+
+        // Verifica se produto já existe no banco de dados
+        db.collection('devedores').find().toArray().then(devedores => {
+            res.status(201).json({ devedores });
+        })
+
+    } catch (error) {
+        console.error('Erro ao obter devedores:', error);
+        res.status(500).json({ error_message: error.message });
+    }
+});
+
 // Registrar venda de produto
 app.post('/registrar-venda', async (req, res) => {
     let { nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda } = req.body;
@@ -114,7 +131,7 @@ app.post('/registrar-venda', async (req, res) => {
 
         db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
 
-            if(!valor) valor = (parseFloat(produto_achado.valor_da_unidade) * parseInt(quantidade));
+            if(valor == null) valor = (parseFloat(produto_achado.valor_da_unidade) * parseInt(quantidade));
 
             db.collection('vendas').insertOne({ nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda }).then(result => {
                 console.log(`${data_venda} Venda inserida: ${result.insertedId}`);
@@ -129,6 +146,16 @@ app.post('/registrar-venda', async (req, res) => {
                     res.status(201).json({ certo: true });
                 });
     
+            });
+
+            db.collection('devedores').findOne({ nome: nome }).then(devedor_achado => {
+
+                if(devedor_achado) {
+                    db.collection('devedores').findOneAndUpdate({nome: nome}, {divida: devedor_achado.divida+valor})
+                } else {
+                    db.collection('devedores').insertOne({nome: nome, divida: valor});
+                };
+
             });
 
         });
@@ -165,7 +192,39 @@ app.get('/download', async (req, res) => {
         readStream.pipe(res);
 
     } catch (error) {
-        console.error('Erro ao registrar venda:', error);
+        console.error('Erro ao baixar tabela de vendas:', error);
+        res.status(500).json({ error_message: error.message });
+    }
+
+});
+
+// Gerar tabela
+app.get('/devedores', async (req, res) => {
+    const dados = await db.collection('devedores').find({}).toArray();
+
+    if(dados.length === 0) {
+        return res.status(404).send('Nenhum dado encontrado.');
+    };
+
+    try {
+        
+        // Gera o Excel na memória
+        const worksheet = xlsx.utils.json_to_sheet(dados);
+        const workbook = xlsx.utils.book_new();
+        xlsx.utils.book_append_sheet(workbook, worksheet, 'Dados');
+
+        const excelBuffer = xlsx.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+
+        // Envia o arquivo como download
+        res.setHeader('Content-Disposition', 'attachment; filename=devedores.xlsx');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+        const readStream = new stream.PassThrough();
+        readStream.end(excelBuffer);
+        readStream.pipe(res);
+
+    } catch (error) {
+        console.error('Erro ao baixar tabela de dívidas:', error);
         res.status(500).json({ error_message: error.message });
     }
 
