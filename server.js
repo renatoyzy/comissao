@@ -146,6 +146,8 @@ app.post('/registrar-venda', async (req, res) => {
     
             });
 
+            if(fiado !== "SIM") return;
+
             db.collection('devedores').findOne({ nome: nome }).then(devedor_achado => {
 
                 if(devedor_achado) {
