@@ -98,6 +98,9 @@ main {
             display: unset;
         }
     }
+    .Produto.Selecionado:hover {
+        transform: unset;
+    }
 
     form {
         display: flex;
