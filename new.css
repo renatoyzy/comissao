@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
+
 * {
     margin: 0;
     overflow: hidden;
@@ -5,7 +8,7 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
     margin: 0 0;
 }
 
@@ -73,6 +76,14 @@ main {
         label {
             user-select: none;
             -moz-user-select: none;
+
+            i, form input {
+                display: none;
+            }
+
+            form input {
+                box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
+            }
         }
     }
     .Produto:hover {
@@ -82,6 +93,10 @@ main {
     }
     .Produto.Selecionado {
         box-shadow: 0px -0.5px 0px 2px #3a92d3 inset;
+
+        i, form input {
+            display: unset;
+        }
     }
 
     form {
