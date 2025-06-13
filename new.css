@@ -55,15 +55,31 @@ main {
     .Produto {
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
         box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
         padding: 10px;
         aspect-ratio: 1 / 1;
         border-radius: 8px;
+        justify-content: space-between;
 
         img {
-            aspect-ratio: 1;
+            max-height: 70%;
+            -webkit-user-drag: none;
+            user-drag: none;
+            align-self: anchor-center;
+            object-fit: scale-down;
         }
+
+        label {
+            user-select: none;
+            -moz-user-select: none;
+        }
+    }
+    .Produto:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+    .Produto.Selecionado {
+        box-shadow: 0px -0.5px 0px 2px #3a92d3 inset;
     }
 
     form {
