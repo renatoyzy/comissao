@@ -64,7 +64,6 @@ main {
         img {
             max-height: 70%;
             -webkit-user-drag: none;
-            user-drag: none;
             align-self: anchor-center;
             object-fit: scale-down;
         }
