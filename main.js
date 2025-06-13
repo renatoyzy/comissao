@@ -213,11 +213,3 @@ document.getElementById('FormularioPagarDivida').addEventListener('submit', asyn
         alert(`Erro ao tentar comunicação\n${error}`);
     }
 });
-
-// Produto selecionável
-Array.from(document.getElementsByClassName('Produto')).forEach(produto => {
-    if(!produto) return;
-    produto.addEventListener('click', () => {
-        produto.classList.toggle('Selecionado');
-    });
-})
