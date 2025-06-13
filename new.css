@@ -45,107 +45,127 @@ header {
     }
 }
 
+
 main {
-    background-color: white;
-    display: grid;
-    margin: 20px;
-    gap: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
-    align-items: flex-start;
-    overflow: initial;
 
-    .Produto {
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
-        padding: 10px;
-        aspect-ratio: 1 / 1;
-        border-radius: 8px;
-        justify-content: space-between;
+    display: flex;
+
+    #Produtos {
         background-color: white;
+        display: grid;
+        margin: 20px;
+        gap: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 25dvw));
+        gap: 10px;
+        align-items: flex-start;
+        overflow: initial;
+        flex-grow: 1;
 
-        img {
-            max-height: 70%;
-            -webkit-user-drag: none;
-            align-self: anchor-center;
-            object-fit: scale-down;
+        .Produto {
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
+            padding: 10px;
+            aspect-ratio: 1 / 1;
+            border-radius: 8px;
+            justify-content: space-between;
+            background-color: white;
+
+            img {
+                max-height: 70%;
+                -webkit-user-drag: none;
+                align-self: anchor-center;
+                object-fit: scale-down;
+            }
+
+            label {
+                user-select: none;
+                -moz-user-select: none;
+
+                i, form input {
+                    display: none;
+                }
+
+                form input {
+                    box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
+                }
+            }
         }
-
-        label {
-            user-select: none;
-            -moz-user-select: none;
+        .Produto:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+            z-index: 1;
+        }
+        .Produto.Selecionado {
+            box-shadow: 0px -0.5px 0px 2px #3a92d3 inset;
 
             i, form input {
-                display: none;
-            }
-
-            form input {
-                box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
+                display: unset;
             }
         }
-    }
-    .Produto:hover {
-        transform: scale(1.1);
-        cursor: pointer;
-        z-index: 1;
-    }
-    .Produto.Selecionado {
-        box-shadow: 0px -0.5px 0px 2px #3a92d3 inset;
 
-        i, form input {
-            display: unset;
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        input, select {
+            border-width: 0.2px;
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
+            transition-duration: 0.4s;
+            padding: 10px;
+            background-color: white;
+        }
+
+        input:hover, select:hover {
+            box-shadow: 0px 0px 0px 1px #4F5A63 inset;
+            border: none;
+        }
+
+        .BotaoPrimario {
+            border: none;
+            background-color: #4F5A63;
+            transition-duration: 0.4s;
+            color: white;
+            cursor: pointer;
+            box-shadow: none;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: medium;
+            font-weight: normal;
+        }
+        .BotaoPrimario:hover {
+            background-color: #14222F;
+        }
+        
+        h1 {
+            margin-top: 0px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        #CampoDadosDb, #CampoDevedoresDb {
+            font-variant: small-caps;
+            margin-bottom: 20px;
         }
     }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-    }
-
-    input, select {
-        border-width: 0.2px;
-        border-radius: 8px;
-        border: none;
-        box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
-        transition-duration: 0.4s;
+    aside {
+        display: none;
+        max-width: 25dvw;
         padding: 10px;
-        background-color: white;
+        margin: 20px;
+        box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
+        border-radius: 8px;
+    }
+    aside.Ativo {
+        display: flex;
     }
 
-    input:hover, select:hover {
-        box-shadow: 0px 0px 0px 1px #4F5A63 inset;
-        border: none;
-    }
-
-    .BotaoPrimario {
-        border: none;
-        background-color: #4F5A63;
-        transition-duration: 0.4s;
-        color: white;
-        cursor: pointer;
-        box-shadow: none;
-        padding: 8px;
-        border-radius: 5px;
-        font-size: medium;
-        font-weight: normal;
-    }
-    .BotaoPrimario:hover {
-        background-color: #14222F;
-    }
-    
-    h1 {
-        margin-top: 0px;
-        margin-bottom: 20px;
-        font-size: 24px;
-    }
-
-    #CampoDadosDb, #CampoDevedoresDb {
-        font-variant: small-caps;
-        margin-bottom: 20px;
-    }
 }
 
 #Copyright {
