@@ -6,6 +6,13 @@ Array.from(document.getElementsByClassName('Produto')).forEach(produto => {
     // Selecionar produto
     produto.addEventListener('click', () => {
         produto.classList.toggle('Selecionado');
+
+        // Ativar aside caso tenha produtos selecionados
+        if(document.querySelectorAll('.Produto.Selecionado').length<1) {
+            document.querySelector('aside').classList.remove('Ativo');
+        } else {
+            document.querySelector('aside').classList.add('Ativo');
+        };
     });
 
     // Impede que o clique no input deselect o produto
@@ -21,4 +28,5 @@ Array.from(document.getElementsByClassName('Produto')).forEach(produto => {
             e.preventDefault();
         })
     })
+
 });

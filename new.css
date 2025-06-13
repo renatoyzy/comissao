@@ -174,7 +174,7 @@ main {
     aside.Ativo {
         display: flex;
         animation-name: SurgirDaDireita;
-        animation-duration: 1s;
+        animation-duration: .4s;
     }
 
 }
