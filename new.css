@@ -1,6 +1,7 @@
 * {
     margin: 0;
     overflow: hidden;
+    transition-duration: .4s;
 }
 
 body {
@@ -15,36 +16,54 @@ header {
     margin: 0;
     padding: 10px;
     display: flex;
+    flex-direction: column;
+    gap: 8px;
     justify-content: center;
+
+    h1 {
+        align-self: center;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-around;
+
+        .SeletorDeAba {
+            padding: 8px;
+            flex-grow: 1;
+            text-align: center;
+            border-radius: 8px;
+            transition-duration: .4s;
+        }
+        .SeletorDeAba:hover {
+            cursor: pointer;
+            background-color: #C5C8CB;
+        }
+    }
 }
 
 main {
     background-color: white;
-    display: flex;
+    display: grid;
     margin: 20px;
     gap: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
     align-items: flex-start;
 
-    .CorpoElemento {
+    .Produto {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
         box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
         padding: 10px;
-        border-radius: 10px;
-    }
+        aspect-ratio: 1 / 1;
+        border-radius: 8px;
 
-    .CorpoElemento.Principal {
-        width: 25dvw;
-        @media screen and (max-width: 767px) {
-            width: unset;
+        img {
+            aspect-ratio: 1;
         }
-    }
-
-    .CorpoElemento.Categoria {
-        box-shadow: none;
-        padding: unset;
-        gap: 12px;
     }
 
     form {
