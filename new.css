@@ -51,6 +51,7 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 10px;
     align-items: flex-start;
+    overflow: initial;
 
     .Produto {
         display: flex;
@@ -60,6 +61,7 @@ main {
         aspect-ratio: 1 / 1;
         border-radius: 8px;
         justify-content: space-between;
+        background-color: white;
 
         img {
             max-height: 70%;
@@ -76,6 +78,7 @@ main {
     .Produto:hover {
         transform: scale(1.1);
         cursor: pointer;
+        z-index: 1;
     }
     .Produto.Selecionado {
         box-shadow: 0px -0.5px 0px 2px #3a92d3 inset;
