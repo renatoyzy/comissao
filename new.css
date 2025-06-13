@@ -21,6 +21,37 @@ body {
     margin: 0 0;
 }
 
+input, select {
+    border-width: 0.2px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
+    transition-duration: 0.4s;
+    padding: 10px;
+    background-color: white;
+}
+
+input:hover, select:hover {
+    box-shadow: 0px 0px 0px 1px #4F5A63 inset;
+    border: none;
+}
+
+.BotaoPrimario {
+    border: none;
+    background-color: #4F5A63;
+    transition-duration: 0.4s;
+    color: white;
+    cursor: pointer;
+    box-shadow: none;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: normal;
+}
+.BotaoPrimario:hover {
+    background-color: #14222F;
+}
+
 header {
     color: black;
     background: white;
@@ -119,37 +150,6 @@ main {
             flex-direction: column;
             gap: 9px;
         }
-
-        input, select {
-            border-width: 0.2px;
-            border-radius: 8px;
-            border: none;
-            box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
-            transition-duration: 0.4s;
-            padding: 10px;
-            background-color: white;
-        }
-
-        input:hover, select:hover {
-            box-shadow: 0px 0px 0px 1px #4F5A63 inset;
-            border: none;
-        }
-
-        .BotaoPrimario {
-            border: none;
-            background-color: #4F5A63;
-            transition-duration: 0.4s;
-            color: white;
-            cursor: pointer;
-            box-shadow: none;
-            padding: 8px;
-            border-radius: 5px;
-            font-size: medium;
-            font-weight: normal;
-        }
-        .BotaoPrimario:hover {
-            background-color: #14222F;
-        }
         
         h1 {
             margin-top: 0px;
@@ -165,16 +165,18 @@ main {
 
     aside {
         display: none;
+    }
+    aside.Ativo {
+        display: flex;
+        flex-direction: column;
+        animation-name: SurgirDaDireita;
+        animation-duration: .4s;
         max-width: 25dvw;
         padding: 10px;
         margin: 20px;
         box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
         border-radius: 8px;
-    }
-    aside.Ativo {
-        display: flex;
-        animation-name: SurgirDaDireita;
-        animation-duration: .4s;
+        min-width: fit-content
     }
 
 }
