@@ -41,7 +41,8 @@ function AtualizarValorTotal(document) {
         }
 
         (() => {
-        
+            document.getElementById("Produtos").innerHTML = '';
+            
             data.produtos.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(produto => {
 
                 document.getElementById("Produtos").innerHTML += `
