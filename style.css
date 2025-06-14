@@ -81,6 +81,7 @@ header {
             border-radius: 8px;
             text-decoration: none;
             color: #868686;
+            width: calc(100% / 3)
         }
         .SeletorDeAba:hover {
             cursor: pointer;

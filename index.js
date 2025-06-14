@@ -53,7 +53,7 @@ function AtualizarValorTotal(document) {
                                 /\w\S*/g,
                                 text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
                             )}
-                            <input type="number" name="quantidade" id="quantidade" placeholder="quantidade" value="1">
+                            <input type="number" name="quantidade" id="quantidade" placeholder="quantidade" value="1" max="${produto.quantidade}" min="1">
                             <input type="hidden" name="valor_da_unidade" id="valor_da_unidade" value="${produto.valor_da_unidade}">
                         </label>
                     </div>
