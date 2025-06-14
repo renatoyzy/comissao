@@ -31,10 +31,20 @@ if(!sessionStorage.getItem('vendedor')) {
             let produtos_string = [];
         
             data.produtos.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(produto => {
-                produtos_string.push(`${produto.nome} ${produto.quantidade} (R$${produto.valor_da_unidade})`);
+                produtos_string.push(`
+                    <div class="Produto">
+                        <img src="${produto.icone || 'https://pngimg.com/uploads/question_mark/question_mark_PNG134.png'}">
+                        <label id="${produto.nome}">
+                            ${produto.nome.replace(
+                                /\w\S*/g,
+                                text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+                            )} - ${produto.quantidade} (R$${produto.valor_da_unidade})
+                        </label>
+                    </div>
+                `);
             });
 
-            produtos_string = produtos_string.join('<br>');
+            produtos_string = produtos_string.join('\n');
 
             document.getElementById("CampoDadosDb").innerHTML = produtos_string;
 
