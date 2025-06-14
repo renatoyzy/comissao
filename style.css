@@ -69,15 +69,19 @@ input:hover, select:hover {
 }
 
 .Carregando {
-    width: 48px;
-    height: 48px;
+    width: 10%;
+    aspect-ratio: 1 / 1;
     border: 5px solid #4F5A63;
     border-bottom-color: transparent;
     border-radius: 50%;
     display: inline-block;
     box-sizing: border-box;
     animation: Rotacao 1s linear infinite;
-} 
+}
+
+.ElementoCentral {
+    margin: auto;
+}
 
 header {
     color: black;
@@ -242,10 +246,6 @@ main {
             margin-bottom: 8px;
         }
         
-    }
-
-    .ElementoCentral {
-        margin: auto;
     }
 
     .CorpoElemento {
