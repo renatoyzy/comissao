@@ -84,9 +84,9 @@
 })();
 
 // Atualizar valor total
-document.querySelectorAll('input#quantidade').forEach(input => {
+document.querySelectorAll('input#quantidade').forEach(element => {
     
-    input.addEventListener('input', () => {
+    element.addEventListener('input', () => {
 
         if (!document.querySelector('aside').classList.contains('Ativo')) return;
 
