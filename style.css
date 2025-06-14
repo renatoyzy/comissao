@@ -177,6 +177,7 @@ main {
         }
         .Produto.NaoSelecionavel {
             font-size: calc(100% - 4px);
+            border-radius: 8px;
         }
         .Produto:hover {
             transform: scale(1.1);
