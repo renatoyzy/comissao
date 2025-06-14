@@ -34,7 +34,7 @@
                         )}">
                             <i class="fa-solid fa-circle-check"></i>
                             ${produto.nome}
-                            <input type="number" name="quantidade" id="quantidade" value="1">
+                            <input type="number" name="quantidade" id="quantidade" placeholder="quantidade" value="1">
                         </label>
                     </div>
                 `;
