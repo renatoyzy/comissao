@@ -271,6 +271,7 @@ main {
         background-color: white;
         flex-grow: 1;
         gap: 8px;
+        width: 50%;
 
         form {
             display: flex;
