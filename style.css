@@ -175,6 +175,9 @@ main {
                 }
             }
         }
+        .Produto.NaoSelecionavel {
+            font-size: calc(100% - 4px);
+        }
         .Produto:hover {
             transform: scale(1.1);
             cursor: pointer;
