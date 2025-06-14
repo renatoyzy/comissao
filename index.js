@@ -67,6 +67,25 @@
 
                 });
 
+                // Atualizar valor total
+                document.querySelectorAll('input#quantidade').forEach(element => {
+                    
+                    element.addEventListener('input', () => {
+
+                        if (!document.querySelector('aside').classList.contains('Ativo')) return;
+
+                        let dados_volateis = '';
+                        let valor_total = 0;
+                        document.querySelectorAll('.Produto.Selecionado').forEach(produto => {
+                            dados_volateis += `- ${produto.querySelector('label').id} (${produto.querySelector('input#quantidade').valueAsNumber}xR$${produto.querySelector('input#valor_da_unidade').value})<br>`;
+                            valor_total += parseInt(produto.querySelector('input#valor_da_unidade').value)*parseInt(produto.querySelector('input#quantidade').value);
+                        });
+
+                        document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h3>TOTAL: R$${valor_total}</h3>`;
+                        
+                    });
+                });
+
                 //produtos_string.push(`${produto.nome} ${produto.quantidade} (R$${produto.valor_da_unidade})`);
 
             });
@@ -82,25 +101,6 @@
         };
     }
 })();
-
-// Atualizar valor total
-document.querySelectorAll('input#quantidade').forEach(element => {
-    
-    element.addEventListener('input', () => {
-
-        if (!document.querySelector('aside').classList.contains('Ativo')) return;
-
-        let dados_volateis = '';
-        let valor_total = 0;
-        document.querySelectorAll('.Produto.Selecionado').forEach(produto => {
-            dados_volateis += `- ${produto.querySelector('label').id} (${produto.querySelector('input#quantidade').valueAsNumber}xR$${produto.querySelector('input#valor_da_unidade').value})<br>`;
-            valor_total += parseInt(produto.querySelector('input#valor_da_unidade').value)*parseInt(produto.querySelector('input#quantidade').value);
-        });
-
-        document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h3>TOTAL: R$${valor_total}</h3>`;
-        
-    });
-});
 
 // Registrar venda no banco de dados
 document.getElementById('FormularioRegistrarVenda').addEventListener('submit', async (event) => {
