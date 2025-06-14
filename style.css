@@ -288,9 +288,11 @@ main {
         flex-direction: column;
         gap: 20px 0;
         align-items: stretch;
+        overflow: scroll;
+        height: calc(100dvh - 205px);
     }
     * {
-        overflow: scroll;
+        overflow: visible;
     }
     #Copyright {
         display: none;
