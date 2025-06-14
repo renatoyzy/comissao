@@ -74,7 +74,7 @@ input:hover, select:hover {
 }
 
 .Carregando {
-    width: clamp(1px, 10%, 48px);
+    width: 36px;
     aspect-ratio: 1 / 1;
     border: 5px solid #4F5A63;
     border-bottom-color: transparent;
