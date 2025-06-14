@@ -58,6 +58,11 @@ input:hover, select:hover {
     border-radius: 8px;
     font-size: medium;
     font-weight: normal;
+    text-decoration: none;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 .BotaoPrimario:hover {
     background-color: #14222F;
