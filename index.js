@@ -72,6 +72,7 @@ function AtualizarValorTotal(document) {
                         if(document.querySelectorAll('.Produto.Selecionado').length<1) {
                             document.querySelector('aside').classList.remove('Ativo');
                             produto.querySelector('input#quantidade').value = "1";
+                            document.forms['FormularioRegistrarVenda'].reset();
                         } else {
                             document.querySelector('aside').classList.add('Ativo');
                         };
