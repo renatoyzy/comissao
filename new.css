@@ -103,7 +103,7 @@ main {
         align-items: flex-start;
         flex-grow: 1;
         max-height: calc(100dvh - 130px);
-        flex-grow: 1;
+        grid-auto-rows: max-content;
         overflow-y: auto;
 
         .Produto {
