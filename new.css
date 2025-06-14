@@ -140,6 +140,7 @@ main {
         }
         .Produto.Selecionado {
             box-shadow: 0px -0.5px 0px 2px #3a92d3 inset;
+            overflow: visible;
 
             i, form input {
                 display: unset;
