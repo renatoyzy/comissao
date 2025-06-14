@@ -151,9 +151,8 @@ main {
             justify-content: space-between;
             background-color: white;
             max-height: 25dvw;
-            
-            
-            
+            position: relative;
+
             img {
                 max-height: 70%;
                 -webkit-user-drag: none;
@@ -171,6 +170,11 @@ main {
 
                 input {
                     box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
+                }
+
+                i {
+                    position: absolute;
+                    top: 10px;
                 }
             }
         }
