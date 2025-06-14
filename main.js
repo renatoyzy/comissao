@@ -1,5 +1,4 @@
-// Adicionar produtos
-// Escrever estoque e fiados pro usuário
+// Produtos
 (async () => {
     try {
 
@@ -35,9 +34,7 @@
                         )}">
                             <i class="fa-solid fa-circle-check"></i>
                             ${produto.nome}
-                            <form>
-                                <input type="number" name="quantidade" id="quantidade" value="1">
-                            </form>
+                            <input type="number" name="quantidade" id="quantidade" value="1">
                         </label>
                     </div>
                 `;
@@ -56,6 +53,13 @@
                             document.querySelector('aside').classList.remove('Ativo');
                         } else {
                             document.querySelector('aside').classList.add('Ativo');
+
+                            let dados_volateis = '';
+                            document.querySelectorAll('.Produto.Selecionado').forEach(produto => {
+                                dados_volateis += `- ${produto.querySelector('label').id} (${produto.querySelector('input#quantidade').valueAsNumber}x)<br>`
+                            });
+
+                            document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis;
                         };
                     });
 
@@ -65,13 +69,6 @@
                             e.stopPropagation();
                         });
                     });
-
-                    // Impede que o formulário do produto seja enviado sozinho
-                    produto.querySelectorAll('form').forEach(form => {
-                        form.addEventListener('submit', (e) => {
-                            e.preventDefault();
-                        })
-                    })
 
                 });
 

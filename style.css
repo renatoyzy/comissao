@@ -128,11 +128,11 @@ main {
                 user-select: none;
                 -moz-user-select: none;
 
-                i, form input {
+                i, input {
                     display: none;
                 }
 
-                form input {
+                input {
                     box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
                 }
             }

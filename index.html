@@ -13,53 +13,38 @@
     <header>
         <h1>Sistema de vendas da comissão de formatura</h1>
         <nav>
-            <div class="SeletorDeAba">Registrar</div>
-            <div class="SeletorDeAba">Novo produto</div>
-            <div class="SeletorDeAba">Área do fiado</div>
-            <div class="SeletorDeAba">Estoque e dados</div>
+            <a href="" class="SeletorDeAba">Registrar</a>
+            <a href="" class="SeletorDeAba">Novo produto</a>
+            <a href="" class="SeletorDeAba">Área do fiado</a>
+            <a href="" class="SeletorDeAba">Estoque e dados</a>
         </nav>
     </header>
 
     <main>
 
-        <div id="Produtos">
-            
-            <!--
-            <div class="Produto">
-                <img src="https://snowfruit.com.br/wp-content/webp-express/webp-images/uploads/2021/12/Picole-1.png.webp">
-                <label>
-                    <i class="fa-solid fa-circle-check"></i>
-                    Picolé
-                    <form>
-                        <input type="number" name="quantidade" id="quantidade" value="1">
-                    </form>
-                </label>
-            </div>
-
-            <div class="Produto">
-                <img src="https://cdn.sodiedoces.com.br/wp-content/uploads/2021/11/26110739/brigadeiro_615x500px.png">
-                <label>
-                    <i class="fa-solid fa-circle-check"></i>
-                    Brigadeiro
-                    <form>
-                        <input type="number" name="quantidade" id="quantidade" value="1">
-                    </form>
-                </label>
-            </div>
-            -->
-            
-        </div>
+        <div id="Produtos"></div>
 
         <aside>
             <h1>Nova venda</h1>
-            <form id="FormNovVenda">
-                <label>Nome</label>
-                <input type="text" placeholder="Teste">
-                <label>Nome</label>
-                <input type="text" placeholder="Teste">
-                <label>Nome</label>
-                
-                <input type="text" placeholder="Teste">
+            <p id="DadosVolateis"></p>
+            <h2>Dados</h2>
+            <form id="FormularioRegistrarVenda">
+                <label for="nome">Comprador (opcional)</label>
+                <input placeholder="Nome completo (e número e turma, caso for fiado)" type="text" name="nome" id="nome">
+                <label for="valor">Valor pago (opcional)</label>
+                <input placeholder="Apenas necessário se for diferente do valor padrão do produto" type="text" name="valor" id="valor">
+                <label for="metodo_de_pagamento">Método de pagamento</label>
+                <select name="metodo_de_pagamento" id="metodo_de_pagamento" required>
+                    <option value="cartao">Cartão</option>
+                    <option value="dinheiro">Dinheiro</option>
+                    <option value="outro">Outro</option>
+                </select>
+                <label for="fiado">Fiado</label>
+                <select name="fiado" id="fiado" required>
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                </select>
+                <input type="submit" class="BotaoPrimario">
             </form>
         </aside>
 
