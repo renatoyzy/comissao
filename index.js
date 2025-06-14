@@ -116,7 +116,7 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
     const metodo_de_pagamento = document.getElementById('FormularioRegistrarVenda').elements["metodo_de_pagamento"].value.toUpperCase();
     const fiado = document.getElementById('FormularioRegistrarVenda').elements["fiado"].value.toUpperCase();
 
-    document.querySelectorAll('.Produto.Selecionado').forEach(produto => {
+    document.querySelectorAll('.Produto.Selecionado').forEach(async (produto) => {
 
         const produto_id = produto.querySelector('label').id;
         const quantidade = produto.querySelector('input#quantidade').valueAsNumber;
