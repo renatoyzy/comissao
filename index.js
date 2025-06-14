@@ -118,7 +118,7 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
 
     document.querySelectorAll('.Produto.Selecionado').forEach(produto => {
 
-        const produto = produto.querySelector('label').id;
+        const produto_id = produto.querySelector('label').id;
         const quantidade = produto.querySelector('input#quantidade').valueAsNumber;
         const valor = null;
 
@@ -129,7 +129,7 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda })
+                body: JSON.stringify({ nome, produto: produto_id, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda })
             });
 
             const data = await response.json();
