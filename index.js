@@ -117,13 +117,14 @@ function AtualizarValorTotal(document) {
 // Registrar venda no banco de dados
 document.getElementById('FormularioRegistrarVenda').addEventListener('submit', async (event) => {
     event.preventDefault();
-    
+
     let nome_pre;
-    if(!document.getElementById('FormularioRegistrarVenda').elements["nome"].value) {
+    if (!document.getElementById('FormularioRegistrarVenda').elements["nome"].value) {
         nome_pre = "NÃO INFORMADO";
     } else {
         nome_pre = document.getElementById('FormularioRegistrarVenda').elements["nome"].value.toUpperCase();
-    };
+    }
+
     const nome = nome_pre;
     const data_venda = new Intl.DateTimeFormat('pt-BR', {
         timeZone: 'America/Sao_Paulo',
@@ -134,18 +135,19 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
         minute: '2-digit',
         hour12: false,
     }).format(new Date()).replace(',', '');
+    
     const vendedor = sessionStorage.getItem('vendedor');
     const metodo_de_pagamento = document.getElementById('FormularioRegistrarVenda').elements["metodo_de_pagamento"].value.toUpperCase();
     const fiado = document.getElementById('FormularioRegistrarVenda').elements["fiado"].value.toUpperCase();
 
-    document.querySelectorAll('.Produto.Selecionado').forEach(async (produto) => {
+    const produtosSelecionados = document.querySelectorAll('.Produto.Selecionado');
 
+    const fetches = Array.from(produtosSelecionados).map(async (produto) => {
         const produto_id = produto.querySelector('label').id;
         const quantidade = produto.querySelector('input#quantidade').valueAsNumber;
         const valor = null;
 
         try {
-            // Comunicação com o backend
             const response = await fetch('https://evolved-legible-spider.ngrok-free.app/registrar-venda', {
                 method: 'POST',
                 headers: {
@@ -155,20 +157,28 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
             });
 
             const data = await response.json();
-            
-            if(data.error_message) return alert(`Erro de comunicação\n${data.error_message}`);
+
+            if (data.error_message) {
+                alert(`Erro de comunicação\n${data.error_message}`);
+                return Promise.reject(data.error_message); // para o Promise.all saber que houve erro
+            }
 
             if (!response.ok) {
                 throw new Error('Falha na solicitação');
             }
 
-            location.reload();
-            
         } catch (error) {
             console.error(error);
             alert(`Erro ao tentar comunicação\n${error}`);
-        };
-
+            return Promise.reject(error); // para o Promise.all saber que houve erro
+        }
     });
 
+    try {
+        await Promise.all(fetches); // espera todas as requisições terminarem com sucesso
+        location.reload(); // recarrega a página
+    } catch (e) {
+        console.error(`Erro de comunicação: ${e}`);
+        alert(`Erro de comunicação: ${e}`);
+    }
 });
