@@ -176,10 +176,17 @@ main {
             border-radius: 8px;
         }
 
+        h4 {
+            margin-bottom: 8px;
+        }
+
         form {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+        }
+
+        input, select {
+            margin-bottom: 8px;
         }
         
     }
