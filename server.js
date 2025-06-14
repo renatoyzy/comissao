@@ -140,7 +140,7 @@ app.post('/registrar-venda', async (req, res) => {
                 let novo_valor = produto_achado.valor_da_unidade;
     
                 db.collection('produtos').deleteOne({ nome: produto }).then(() => {
-                    db.collection('produtos').insertOne({ nome: novo_nome, quantidade: nova_quantidade, valor_da_unidade: novo_valor});
+                    db.collection('produtos').insertOne({ nome: novo_nome, icone: produto_achado.icone, quantidade: nova_quantidade, valor_da_unidade: novo_valor});
                     res.status(201).json({ certo: true });
                 });
     
