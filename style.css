@@ -92,12 +92,13 @@ header {
 
 main {
     display: flex;
-    height: calc(100dvh - 130px);
+    height: calc(100dvh - 164px);
     overflow: hidden;
+    margin: 20px;
+    gap: 20px;
 
     #Produtos {
         background-color: white;
-        margin: 20px;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         gap: 10px;
@@ -106,7 +107,7 @@ main {
         max-height: calc(100dvh - 130px);
         grid-auto-rows: max-content;
         overflow: visible;
-
+        
         .Produto {
             display: flex;
             flex-direction: column;
@@ -152,11 +153,12 @@ main {
                 max-width: -webkit-fill-available;
             }
         }
-    }
+
+    };
 
     aside {
         display: none;
-    }
+    };
     aside.Ativo {
         display: flex;
         flex-direction: column;
@@ -164,7 +166,6 @@ main {
         animation-duration: .4s;
         max-width: 25dvw;
         padding: 10px;
-        margin: 20px;
         box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
         border-radius: 18px;
         min-width: fit-content;
@@ -228,10 +229,20 @@ main {
         margin: auto;
     }
 
-}
+    .CorpoElemento {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
+        padding: 10px;
+        border-radius: 18px;
 
-.MainVertical {
-    flex-direction: column;
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+    }
+
 }
 
 #Copyright {
