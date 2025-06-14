@@ -183,6 +183,27 @@ main {
         form {
             display: flex;
             flex-direction: column;
+
+            .Opcoes {
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+                margin-bottom: 8px;
+
+                label {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-weight: normal;
+                    color: #4F5A63;
+
+                    input[type=checkbox] {
+                        width: 20px;
+                        height: 20px;
+                        margin-left: 10px;
+                    }
+                }
+            }
         }
 
         input[type=text], input[type=number], select {

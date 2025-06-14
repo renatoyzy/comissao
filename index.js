@@ -1,3 +1,8 @@
+// Vendedor identificado?
+if(!sessionStorage.getItem('vendedor')) {
+    location.href = 'identificar';
+};
+
 // Atualizar valor
 function AtualizarValorTotal(document) {
     if (!document.querySelector('aside').classList.contains('Ativo')) return;

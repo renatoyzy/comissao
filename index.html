@@ -14,7 +14,7 @@
         <h1>Sistema de vendas da comissão de formatura</h1>
         <nav>
             <a href="." class="SeletorDeAba">Registrar</a>
-            <a href="novo" class="SeletorDeAba">Novo produto</a>
+            <a href="novoproduto" class="SeletorDeAba">Novo produto</a>
             <a href="devedores" class="SeletorDeAba">Devedores</a>
             <a href="estoque" class="SeletorDeAba">Estoque e dados</a>
         </nav>
@@ -30,17 +30,22 @@
                 <form id="FormularioRegistrarVenda">
                     <label for="nome">Nome do cliente</label>
                     <input placeholder="Opcional" type="text" name="nome" id="nome">
-                    <label for="metodo_de_pagamento">Método de pagamento</label>
-                    <select name="metodo_de_pagamento" id="metodo_de_pagamento" required>
-                        <option value="cartao">Cartão</option>
-                        <option value="dinheiro">Dinheiro</option>
-                        <option value="outro">Outro</option>
-                    </select>
-                    <label for="fiado">Fiado</label>
-                    <select name="fiado" id="fiado" required>
-                        <option value="nao">Não</option>
-                        <option value="sim">Sim</option>
-                    </select>
+                    <label>Método de pagamento</label>
+                    <div class="Opcoes">
+                        <input type="radio" name="metodo_de_pagamento" id="cartao" value="cartao" checked>
+                        <label for="cartao">Cartão</label>
+                        <input type="radio" name="metodo_de_pagamento" id="dinheiro" value="dinheiro">
+                        <label for="dinheiro">Dinheiro</label>
+                        <input type="radio" name="metodo_de_pagamento" id="outro" value="outro">
+                        <label for="outro">Outro</label>
+                    </div>
+                    <label>Fiado</label>
+                    <div class="Opcoes">
+                        <input type="radio" name="fiado" id="fiado_nao" value="nao">
+                        <label for="fiado_nao">Não</label>
+                        <input type="radio" name="fiado" id="fiado_sim" value="sim">
+                        <label for="fiado_sim">Sim</label>
+                    </div>
                     <input type="submit" class="BotaoPrimario">
                 </form>
             </div>
