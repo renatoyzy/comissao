@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
 
-@keyframes SurgirDaDireita {
+@keyframes SurgirDaEsquerda {
     0% {
-        transform: translateX(100dvw);
+        transform: translateX(-100dvw);
     }
     100% {
         transform: translateX(0px);
@@ -160,7 +160,7 @@ main {
     aside.Ativo {
         display: flex;
         flex-direction: column;
-        animation-name: SurgirDaDireita;
+        animation-name: SurgirDaEsquerda;
         animation-duration: .4s;
         max-width: 25dvw;
         padding: 10px;
