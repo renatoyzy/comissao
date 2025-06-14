@@ -45,20 +45,23 @@ function AtualizarValorTotal(document) {
             
             data.produtos.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(produto => {
 
-                document.getElementById("Produtos").innerHTML += `
-                    <div class="Produto">
-                        <img src="${produto.icone || 'https://pngimg.com/uploads/question_mark/question_mark_PNG134.png'}">
-                        <label id="${produto.nome}">
-                            <i class="fa-solid fa-circle-check"></i>
-                            ${produto.nome.replace(
-                                /\w\S*/g,
-                                text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
-                            )}
-                            <input type="number" name="quantidade" id="quantidade" placeholder="quantidade" value="1" max="${produto.quantidade}" min="1">
-                            <input type="hidden" name="valor_da_unidade" id="valor_da_unidade" value="${produto.valor_da_unidade}">
-                        </label>
-                    </div>
-                `;
+                // Adicionar produto na tela se tiver no estoque
+                if(produto.quantidade>0) {
+                    document.getElementById("Produtos").innerHTML += `
+                        <div class="Produto">
+                            <img src="${produto.icone || 'https://pngimg.com/uploads/question_mark/question_mark_PNG134.png'}">
+                            <label id="${produto.nome}">
+                                <i class="fa-solid fa-circle-check"></i>
+                                ${produto.nome.replace(
+                                    /\w\S*/g,
+                                    text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+                                )}
+                                <input type="number" name="quantidade" id="quantidade" placeholder="quantidade" value="1" max="${produto.quantidade}" min="1">
+                                <input type="hidden" name="valor_da_unidade" id="valor_da_unidade" value="${produto.valor_da_unidade}">
+                            </label>
+                        </div>
+                    `;
+                };
                 
                 // Produto selecionável
                 Array.from(document.getElementsByClassName('Produto')).forEach(produto => {
