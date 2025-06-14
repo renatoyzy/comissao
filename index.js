@@ -1,4 +1,4 @@
-// Atualizar valor total
+// Atualizar valor
 function AtualizarValorTotal(document) {
     if (!document.querySelector('aside').classList.contains('Ativo')) return;
 
