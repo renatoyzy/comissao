@@ -96,7 +96,8 @@ main {
         margin: 20px;
         gap: 0 20px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 25%));
+        grid-template-columns: repeat(auto-fit, minmax(100px, 23%));
+        overflow-y: scroll;
         gap: 10px;
         align-items: flex-start;
         overflow: initial;
