@@ -186,7 +186,7 @@ main {
 
 #Copyright {
     position: absolute;
-    bottom: 2dvh;
+    bottom: 0.1dvh;
     right: 1dvw;
     color: #4F5A63;
     text-align: end;
