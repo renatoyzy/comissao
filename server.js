@@ -46,12 +46,14 @@ app.get('/', (req, res) => {
 
 // Adicionar estoque de produto
 app.post('/adicionar-estoque', async (req, res) => {
-    const { nome, icone, quantidade, data_criacao, valor_da_unidade } = req.body;
+    let { nome, icone, quantidade, data_criacao, valor_da_unidade } = req.body;
 
     try {
-        if (!nome || !quantidade || !data_criacao || !valor_da_unidade) {
+        if (!nome || !data_criacao) {
             return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
         };
+
+        if(!quantidade) quantidade = 0;
 
         // Verifica se produto já existe no banco de dados
         if (await db.collection('produtos').findOne({ nome })) {
@@ -62,7 +64,7 @@ app.post('/adicionar-estoque', async (req, res) => {
 
                 db.collection('produtos').deleteOne({ nome }).then(async () => {
 
-                    db.collection('produtos').insertOne({ nome, icone: icone || produto_original.icone, quantidade: parseInt(quantidade)+parseInt(quantia_antiga), valor_da_unidade }).then(result => {
+                    db.collection('produtos').insertOne({ nome, icone: icone || produto_original.icone, quantidade: parseInt(quantidade)+parseInt(quantia_antiga), valor_da_unidade: valor_da_unidade || produto_original.valor_da_unidade }).then(result => {
                         console.log(`${data_criacao} Produto modificado: ${result.insertedId}`);
                     });
 
@@ -72,6 +74,8 @@ app.post('/adicionar-estoque', async (req, res) => {
             })
 
         } else {
+
+            if(!valor_da_unidade) return res.status(500).json({ error_message: 'Se o produto a adicionar é novo, deve-se especificar o preço.' });
 
             db.collection('produtos').insertOne({ nome, icone: icone || '', quantidade: parseInt(quantidade), valor_da_unidade: parseFloat(valor_da_unidade)}).then(result => {
                 console.log(`${data_criacao} Produto inserido: ${result.insertedId}`);
