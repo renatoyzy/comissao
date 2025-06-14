@@ -172,6 +172,7 @@ main {
 
         #AsideContents {
             overflow: scroll;
+            padding-right: 8px;
         }
 
         form {
