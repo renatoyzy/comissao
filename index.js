@@ -9,7 +9,7 @@ function AtualizarValorTotal(document) {
         valor_total += parseInt(produto.querySelector('input#valor_da_unidade').value)*parseInt(produto.querySelector('input#quantidade').value);
     });
 
-    document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h3>TOTAL: R$${valor_total}</h3>`;
+    document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$${valor_total}</h4>`;
 };
 
 // Produtos
