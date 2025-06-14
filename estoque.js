@@ -32,7 +32,7 @@ if(!sessionStorage.getItem('vendedor')) {
         
             data.produtos.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(produto => {
                 produtos_string.push(`
-                    <div class="Produto">
+                    <div class="Produto NaoSelecionavel">
                         <img src="${produto.icone || 'https://pngimg.com/uploads/question_mark/question_mark_PNG134.png'}">
                         <label id="${produto.nome}">
                             ${produto.nome.replace(
