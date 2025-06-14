@@ -71,9 +71,6 @@ input:hover, select:hover {
 .ScrollContent {
     overflow: scroll;
     border-radius: 8px;
-    display: inherit;
-    flex-direction: inherit;
-    gap: inherit;
 }
 
 .Carregando {
