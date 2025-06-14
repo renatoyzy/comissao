@@ -169,6 +169,7 @@ main {
         border-radius: 18px;
         min-width: fit-content;
         gap: 8px;
+        max-height: fit-content;
 
         #AsideContents {
             overflow: scroll;
