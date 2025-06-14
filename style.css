@@ -170,11 +170,16 @@ main {
         min-width: fit-content;
         gap: 8px;
 
+        #AsideContents {
+            overflow: scroll;
+        }
+
         form {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
+        
     }
 
 }
