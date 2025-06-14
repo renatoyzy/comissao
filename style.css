@@ -90,10 +90,9 @@ header {
     }
 }
 
-
 main {
     display: flex;
-    height: calc(100dvh - 130px); /* Ajuste conforme seu header */
+    height: calc(100dvh - 130px);
     overflow: hidden;
 
     #Produtos {
@@ -225,6 +224,14 @@ main {
         
     }
 
+    .ElementoCentral {
+        margin: auto;
+    }
+
+}
+
+.MainVertical {
+    flex-direction: column;
 }
 
 #Copyright {

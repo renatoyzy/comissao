@@ -3,14 +3,14 @@ if(!sessionStorage.getItem('vendedor')) {
     location.href = 'identificar';
 };
 
-// Escrever estoque pro usuário
+// Escrever fiados pro usuário
 (async () => {
     try {
-
-        // Escrever estoque
+        
+        // Escrever fiados
 
         // Comunicação com o backend
-        let response = await fetch('https://evolved-legible-spider.ngrok-free.app/obter-estoque', {
+        let response = await fetch('https://evolved-legible-spider.ngrok-free.app/obter-devedores', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,15 +28,20 @@ if(!sessionStorage.getItem('vendedor')) {
 
         (() => {
 
-            let produtos_string = [];
+            document.getElementById('NomeDevedorPagando').innerHTML = '';
+            let devedores_string = [];
         
-            data.produtos.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(produto => {
-                produtos_string.push(`${produto.nome} ${produto.quantidade} (R$${produto.valor_da_unidade})`);
+            data.devedores.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(devedor => {
+                devedores_string.push(`${devedor.nome}: R$${devedor.divida}`);
+
+                document.getElementById('NomeDevedorPagando').innerHTML += `
+                    <option value="${devedor.nome}">${devedor.nome}</option>
+                `;
             });
 
-            produtos_string = produtos_string.join('<br>');
+            devedores_string = devedores_string.join('<br>');
 
-            document.getElementById("CampoDadosDb").innerHTML = produtos_string;
+            document.getElementById("CampoDevedoresDb").innerHTML = devedores_string;
 
         })();
         
@@ -50,24 +55,21 @@ if(!sessionStorage.getItem('vendedor')) {
     }
 })();
 
-// Adicionar estoque no banco de dados
-document.getElementById('FormularioAdicionarEstoque').addEventListener('submit', async (event) => {
+// Reduzir dívida no banco de dados
+document.getElementById('FormularioPagarDivida').addEventListener('submit', async (event) => {
     event.preventDefault();
     
-    const nome = document.getElementById('FormularioAdicionarEstoque').elements["nome"].value.toLowerCase().replaceAll(' ', '');
-    const icone = document.getElementById('FormularioAdicionarEstoque').elements["icone"].value;
-    const valor_da_unidade = parseFloat(document.getElementById('FormularioAdicionarEstoque').elements["valor"].value.replaceAll(',', '.'));
-    const quantidade = document.getElementById('FormularioAdicionarEstoque').elements["quantidade"].value;
-    const data_criacao = new Date();
+    const devedor = document.getElementById('FormularioPagarDivida').elements["devedor"].value.toUpperCase();
+    const valor = parseFloat(document.getElementById('FormularioPagarDivida').elements["valor"].value.replaceAll(",","."));
 
     try {
         // Comunicação com o backend
-        const response = await fetch('https://evolved-legible-spider.ngrok-free.app/adicionar-estoque', {
+        const response = await fetch('https://evolved-legible-spider.ngrok-free.app/pagar-divida', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome, icone, quantidade, data_criacao, valor_da_unidade })
+            body: JSON.stringify({ devedor, valor })
         });
 
         const data = await response.json();

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Comissão do Delcides</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <h1>Sistema de vendas da comissão de formatura</h1>
+        <nav>
+            <a href="." class="SeletorDeAba">Registrar</a>
+            <a href="estoque" class="SeletorDeAba">Estoque</a>
+            <a href="dividas" class="SeletorDeAba">Dívidas</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Área do fiado -->
+        <div class="CorpoElemento Categoria">
+
+            <div class="CorpoElemento">
+                <h1>Devedores</h1>
+
+                <p id="CampoDevedoresDb">
+                </p>
+        
+                <a href="https://evolved-legible-spider.ngrok-free.app/devedores" style="
+                    text-decoration: none;
+                    display: flex;
+                "><button class="BotaoPrimario" style="
+                    display: flex;
+                    flex-grow: 1;
+                    justify-content: center;
+                ">Baixar planilha de cobrança</button></a>
+            </div>
+
+            <div class="CorpoElemento">
+                <h1>Pagar dívida</h1>
+                <form id="FormularioPagarDivida">
+                    <label for="NomeDevedorPagando">Nome</label>
+                    <select name="devedor" id="NomeDevedorPagando" required>
+                        <option value="volvo">Aguarde...</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                    <label for="ValorDivida">Valor pago</label>
+                    <input placeholder="0,00" type="text" name="valor" id="ValorDivida" required>
+                    <input type="submit" class="BotaoPrimario" value="Pagar">
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+    <p id="Copyright">64.99324-9400 © Site feito pelo Renato (2025)</p>
+
+    <script src="estoque.js"></script>
+
+</body>
+
+</html>
