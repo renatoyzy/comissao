@@ -60,7 +60,7 @@
                             let valor_total = 0;
                             document.querySelectorAll('.Produto.Selecionado').forEach(produto => {
                                 dados_volateis += `- ${produto.querySelector('label').id} (${produto.querySelector('input#quantidade').valueAsNumber}x)<br>`;
-                                valor_total += produto.querySelector('input#valor_da_unidade').valueAsNumber;
+                                valor_total += parseInt(produto.querySelector('input#valor_da_unidade').value);
                             });
 
                             document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<br>TOTAL: R$${valor_total}`;
