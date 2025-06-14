@@ -185,7 +185,7 @@ main {
             flex-direction: column;
         }
 
-        input, select {
+        input[type=text], input[type=number], select {
             margin-bottom: 8px;
         }
         
