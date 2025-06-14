@@ -62,7 +62,6 @@ function AtualizarValorTotal(document) {
                     // Selecionar produto
                     produto.addEventListener('click', () => {
                         produto.classList.toggle('Selecionado');
-                        AtualizarValorTotal(document);
 
                         // Ativar aside caso tenha produtos selecionados
                         if(document.querySelectorAll('.Produto.Selecionado').length<1) {
@@ -71,6 +70,8 @@ function AtualizarValorTotal(document) {
                         } else {
                             document.querySelector('aside').classList.add('Ativo');
                         };
+
+                        AtualizarValorTotal(document);
                     });
 
                     // Impede que o clique no input deselect o produto
