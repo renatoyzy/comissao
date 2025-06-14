@@ -84,7 +84,6 @@ function AtualizarValorTotal(document) {
 
                 // Atualizar valor total
                 document.querySelectorAll('input#quantidade').forEach(element => {
-                    
                     element.addEventListener('input', () => {AtualizarValorTotal(document)});
                 });
 
