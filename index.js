@@ -28,13 +28,14 @@
                 document.getElementById("Produtos").innerHTML += `
                     <div class="Produto">
                         <img src="${produto.icone || 'https://pngimg.com/uploads/question_mark/question_mark_PNG134.png'}">
-                        <label id="${produto.nome.replace(
-                            /\w\S*/g,
-                            text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
-                        )}">
+                        <label id="${produto.nome}">
                             <i class="fa-solid fa-circle-check"></i>
-                            ${produto.nome}
+                            ${produto.nome.replace(
+                                /\w\S*/g,
+                                text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+                            )}
                             <input type="number" name="quantidade" id="quantidade" placeholder="quantidade" value="1">
+                            <input type="hidden" name="valor_da_unidade" id="valor_da_unidade" value="${produto.valor_da_unidade}">
                         </label>
                     </div>
                 `;
@@ -56,11 +57,13 @@
                             document.querySelector('aside').classList.add('Ativo');
 
                             let dados_volateis = '';
+                            let valor_total = 0;
                             document.querySelectorAll('.Produto.Selecionado').forEach(produto => {
-                                dados_volateis += `- ${produto.querySelector('label').id} (${produto.querySelector('input#quantidade').valueAsNumber}x)<br>`
+                                dados_volateis += `- ${produto.querySelector('label').id} (${produto.querySelector('input#quantidade').valueAsNumber}x)<br>`;
+                                valor_total += produto.querySelector('input#valor_da_unidade').valueAsNumber;
                             });
 
-                            document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis;
+                            document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<br>TOTAL: R$${valor_total}`;
                         };
                     });
 
@@ -88,3 +91,62 @@
         };
     }
 })();
+
+// Registrar venda no banco de dados
+document.getElementById('FormularioRegistrarVenda').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    
+    let nome_pre;
+    if(!document.getElementById('FormularioRegistrarVenda').elements["nome"].value) {
+        nome_pre = "NÃO INFORMADO";
+    } else {
+        nome_pre = document.getElementById('FormularioRegistrarVenda').elements["nome"].value.toUpperCase();
+    };
+    const nome = nome_pre;
+    const data_venda = new Intl.DateTimeFormat('pt-BR', {
+        timeZone: 'America/Sao_Paulo',
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+    }).format(new Date()).replace(',', '');
+    const vendedor = sessionStorage.getItem('vendedor');
+    const metodo_de_pagamento = document.getElementById('FormularioRegistrarVenda').elements["metodo_de_pagamento"].value.toUpperCase();
+    const fiado = document.getElementById('FormularioRegistrarVenda').elements["fiado"].value.toUpperCase();
+
+    document.querySelectorAll('.Produto.Selecionado').forEach(produto => {
+
+        const produto = produto.querySelector('label').id;
+        const quantidade = produto.querySelector('input#quantidade').valueAsNumber;
+        const valor = null;
+
+        try {
+            // Comunicação com o backend
+            const response = await fetch('https://evolved-legible-spider.ngrok-free.app/registrar-venda', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, produto, quantidade, valor, metodo_de_pagamento, fiado, vendedor, data_venda })
+            });
+
+            const data = await response.json();
+            
+            if(data.error_message) return alert(`Erro de comunicação\n${data.error_message}`);
+
+            if (!response.ok) {
+                throw new Error('Falha na solicitação');
+            }
+
+            location.reload();
+            
+        } catch (error) {
+            console.error(error);
+            alert(`Erro ao tentar comunicação\n${error}`);
+        };
+
+    });
+
+});
