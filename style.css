@@ -133,13 +133,13 @@ main {
     .Produtos {
         background-color: white;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-auto-flow: column;
         gap: 10px;
-        align-items: flex-start;
         flex-grow: 1;
         max-height: calc(100dvh - 130px);
         grid-auto-rows: max-content;
         overflow: visible;
+        justify-content: start;
         
         .Produto {
             display: flex;
@@ -151,6 +151,8 @@ main {
             justify-content: space-between;
             background-color: white;
             max-height: 25dvw;
+            
+            
             
             img {
                 max-height: 70%;
