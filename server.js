@@ -131,6 +131,8 @@ app.post('/registrar-venda', async (req, res) => {
             return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
         };
 
+        if(fiado=="SIM") metodo_de_pagamento = "-";
+
         db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
 
             if(valor == null) valor = (parseFloat(produto_achado.valor_da_unidade) * parseInt(quantidade));
