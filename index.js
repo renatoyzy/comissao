@@ -27,7 +27,7 @@
 
                 document.getElementById("Produtos").innerHTML += `
                     <div class="Produto">
-                        <img src="${produto.icone || 'https://snowfruit.com.br/wp-content/webp-express/webp-images/uploads/2021/12/Picole-1.png.webphttps://media.istockphoto.com/id/1341411204/pt/foto/question-mark-golden-interrogation-point-symbol-asking-questions-sign-white-stick-figure-man.jpg?s=612x612&w=0&k=20&c=qZ4sDYldc3bOm3Po4EymT7Luo3vQi99Zz2IkLggZAEg='}">
+                        <img src="${produto.icone || 'https://pngimg.com/uploads/question_mark/question_mark_PNG134.png'}">
                         <label id="${produto.nome.replace(
                             /\w\S*/g,
                             text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
