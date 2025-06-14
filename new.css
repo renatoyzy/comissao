@@ -115,6 +115,7 @@ main {
             border-radius: 8px;
             justify-content: space-between;
             background-color: white;
+            max-height: 25dvw;
             
             img {
                 max-height: 70%;
