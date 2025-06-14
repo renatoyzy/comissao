@@ -130,9 +130,6 @@ main {
     margin: 20px;
     gap: 20px;
 
-    .Produtos#Produtos {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 25dvw));
-    }
     .Produtos {
         background-color: white;
         display: grid;
