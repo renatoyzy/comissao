@@ -104,7 +104,7 @@ main {
         flex-grow: 1;
         max-height: calc(100dvh - 130px);
         grid-auto-rows: max-content;
-        overflow-y: auto;
+        overflow: visible;
 
         .Produto {
             display: flex;
