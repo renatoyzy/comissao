@@ -51,6 +51,7 @@
                         // Ativar aside caso tenha produtos selecionados
                         if(document.querySelectorAll('.Produto.Selecionado').length<1) {
                             document.querySelector('aside').classList.remove('Ativo');
+                            produto.querySelector('input').value = "1";
                         } else {
                             document.querySelector('aside').classList.add('Ativo');
 
