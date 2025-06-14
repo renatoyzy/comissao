@@ -196,12 +196,24 @@ main {
                     align-items: center;
                     font-weight: normal;
                     color: #4F5A63;
+                    padding: 8px;
+                    border-radius: 8px;
+                    box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
+                    font-size: x-large;
+                    aspect-ratio: 1 / 1;
+                }
 
-                    input[type=checkbox] {
-                        width: 20px;
-                        height: 20px;
-                        margin-left: 10px;
-                    }
+                label:hover {
+                    cursor: pointer;
+                    box-shadow: 0px 0px 0px 1px #4F5A63 inset;
+                }
+
+                input[type=radio] {
+                    display: none;
+                }
+
+                input[type=radio]:checked + label {
+                    box-shadow: 0px -0.5px 0px 2px #3a92d3 inset
                 }
             }
         }
