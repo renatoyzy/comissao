@@ -11,7 +11,7 @@ function AtualizarValorTotal(document) {
     let valor_total = 0;
     document.querySelectorAll('.Produto.Selecionado').forEach(produto => {
         dados_volateis += `- ${produto.querySelector('label').id} (${produto.querySelector('input#quantidade').valueAsNumber}xR$${produto.querySelector('input#valor_da_unidade').value})<br>`;
-        valor_total += parseInt(produto.querySelector('input#valor_da_unidade').value)*parseInt(produto.querySelector('input#quantidade').value);
+        valor_total += parseFloat(produto.querySelector('input#valor_da_unidade').value)*parseInt(produto.querySelector('input#quantidade').value);
     });
 
     document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$${valor_total}</h4>`;
