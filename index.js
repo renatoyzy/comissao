@@ -16,6 +16,8 @@ function AtualizarValorTotal(document) {
 
     if(document.forms['FormularioRegistrarVenda'].elements["metodo_de_pagamento"].value === 'cartao') {
         document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL + taxa: R$${(valor_total*1.05).toFixed(2)}</h4>`;
+    } else if(document.forms['FormularioRegistrarVenda'].elements["metodo_de_pagamento"].value === 'gratis') {
+        document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$0.00</h4>`;
     } else {
         document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$${valor_total}</h4>`;
     };
