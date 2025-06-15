@@ -23,6 +23,7 @@
     margin: 0;
     overflow: hidden;
     transition-duration: .4s;
+    scroll-behavior: smooth;
 }
 
 body {
