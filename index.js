@@ -20,8 +20,8 @@ function AtualizarValorTotal(document) {
         document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$${valor_total}</h4>`;
     };
 };
-document.querySelectorAll('.Opcoes#Metodo>label').forEach(element => {
-    element.addEventListener('click', () => {
+document.querySelectorAll('.Opcoes#Metodo>input').forEach(element => {
+    element.addEventListener('input', () => {
         AtualizarValorTotal(document);
     });
 });
