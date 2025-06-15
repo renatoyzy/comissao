@@ -14,7 +14,11 @@ function AtualizarValorTotal(document) {
         valor_total += parseFloat(produto.querySelector('input#valor_da_unidade').value)*parseInt(produto.querySelector('input#quantidade').value);
     });
 
-    document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$${valor_total}</h4>`;
+    if(document.forms['FormularioRegistrarVenda'].elements["metodo_de_pagamento"].value === 'cartao') {
+        document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL + taxa: R$${valor_total*1.05}</h4>`;
+    } else {
+        document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$${valor_total}</h4>`;
+    };
 };
 
 // Produtos
@@ -145,7 +149,7 @@ document.getElementById('FormularioRegistrarVenda').addEventListener('submit', a
     const fetches = Array.from(produtosSelecionados).map(async (produto) => {
         const produto_id = produto.querySelector('label').id;
         const quantidade = produto.querySelector('input#quantidade').valueAsNumber;
-        const valor = null;
+        const valor = metodo_de_pagamento == "GRATIS" ? 0 : null;
 
         try {
             const response = await fetch('https://evolved-legible-spider.ngrok-free.app/registrar-venda', {
