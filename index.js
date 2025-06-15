@@ -15,11 +15,16 @@ function AtualizarValorTotal(document) {
     });
 
     if(document.forms['FormularioRegistrarVenda'].elements["metodo_de_pagamento"].value === 'cartao') {
-        document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL + taxa: R$${valor_total*1.05}</h4>`;
+        document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL + taxa: R$${(valor_total*1.05).toFixed(2)}</h4>`;
     } else {
         document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$${valor_total}</h4>`;
     };
 };
+document.querySelectorAll('.Opcoes#Metodo>label').forEach(element => {
+    element.addEventListener('click', () => {
+        AtualizarValorTotal(document);
+    });
+});
 
 // Produtos
 (async () => {
