@@ -54,6 +54,7 @@ document.querySelectorAll('.Opcoes#Metodo>input').forEach(element => {
         (() => {
             document.getElementById("Produtos").innerHTML = '';
             
+            // Adicionar produtos
             data.produtos.sort((a, b) => a.nome.localeCompare(b.nome)).forEach(produto => {
 
                 // Adicionar produto na tela se tiver no estoque
@@ -74,43 +75,44 @@ document.querySelectorAll('.Opcoes#Metodo>input').forEach(element => {
                     `;
                 };
                 
-                // Produto selecionável
-                Array.from(document.getElementsByClassName('Produto')).forEach(produto => {
-
-                    if (!produto) return;
-                    
-                    // Selecionar produto
-                    produto.addEventListener('click', () => {
-                        produto.classList.toggle('Selecionado');
-
-                        // Ativar aside caso tenha produtos selecionados
-                        if(document.querySelectorAll('.Produto.Selecionado').length<1) {
-                            document.querySelector('aside').classList.remove('Ativo');
-                            produto.querySelector('input#quantidade').value = "1";
-                            document.forms['FormularioRegistrarVenda'].reset();
-                        } else {
-                            document.querySelector('aside').classList.add('Ativo');
-                        };
-
-                        AtualizarValorTotal(document);
-                    });
-
-                    // Impede que o clique no input deselect o produto
-                    produto.querySelectorAll('input').forEach(input => {
-                        input.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                        });
-                    });
-
-                });
-
-                // Atualizar valor total
-                document.querySelectorAll('input#quantidade').forEach(element => {
-                    element.addEventListener('input', () => {AtualizarValorTotal(document)});
-                });
 
                 //produtos_string.push(`${produto.nome} ${produto.quantidade} (R$${produto.valor_da_unidade})`);
 
+            });
+
+            // Produto selecionável
+            Array.from(document.getElementsByClassName('Produto')).forEach(produto => {
+
+                if (!produto) return;
+                
+                // Selecionar produto
+                produto.addEventListener('click', () => {
+                    produto.classList.toggle('Selecionado');
+
+                    // Ativar aside caso tenha produtos selecionados
+                    if(document.querySelectorAll('.Produto.Selecionado').length<1) {
+                        document.querySelector('aside').classList.remove('Ativo');
+                        produto.querySelector('input#quantidade').value = "1";
+                        document.forms['FormularioRegistrarVenda'].reset();
+                    } else {
+                        document.querySelector('aside').classList.add('Ativo');
+                    };
+
+                    AtualizarValorTotal(document);
+                });
+
+                // Impede que o clique no input deselect o produto
+                produto.querySelectorAll('input').forEach(input => {
+                    input.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                    });
+                });
+
+            });
+
+            // Atualizar valor total no input de quantidade
+            document.querySelectorAll('input#quantidade').forEach(element => {
+                element.addEventListener('input', () => {AtualizarValorTotal(document)});
             });
 
         })();
