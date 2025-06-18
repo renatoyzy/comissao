@@ -132,6 +132,7 @@ app.post('/registrar-venda', async (req, res) => {
         };
 
         if(fiado=="SIM") metodo_de_pagamento = "-";
+        if(metodo_de_pagamento == "GRATIS") metodo_de_pagamento = "-";
 
         db.collection('produtos').findOne({ nome: produto }).then(produto_achado => {
 
@@ -142,7 +143,15 @@ app.post('/registrar-venda', async (req, res) => {
                 
                 let novo_nome = produto_achado.nome;
                 let nova_quantidade = parseInt(produto_achado.quantidade)-parseInt(quantidade);
-                let nova_data = new Date();
+                let nova_data = new Date().toLocaleDateString('pt-BR', {
+                    timeZone: 'America/Sao_Paulo',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false,
+                }).replace(',', '');
                 let novo_valor = produto_achado.valor_da_unidade;
     
                 db.collection('produtos').deleteOne({ nome: produto }).then(() => {
@@ -158,10 +167,10 @@ app.post('/registrar-venda', async (req, res) => {
 
                 if(devedor_achado) {
                     db.collection('devedores').deleteOne({ nome: devedor_achado.nome }).then(() => {
-                        db.collection('devedores').insertOne({ nome: devedor_achado.nome, divida: devedor_achado.divida+valor});
+                        db.collection('devedores').insertOne({ nome: devedor_achado.nome, divida: devedor_achado.divida+valor, ultimo_fiado: data_venda});
                     });
                 } else {
-                    db.collection('devedores').insertOne({nome: nome, divida: valor});
+                    db.collection('devedores').insertOne({nome: nome, divida: valor, ultimo_fiado: data_venda});
                 };
 
             });
