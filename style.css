@@ -139,7 +139,8 @@ header {
         }
         .SeletorDeAba:hover {
             cursor: pointer;
-            background-color: #C5C8CB;
+            transform: scale(1.2);
+            color: black;
         }
     }
 }
