@@ -19,7 +19,7 @@ function AtualizarValorTotal(document) {
     } else if(document.forms['FormularioRegistrarVenda'].elements["metodo_de_pagamento"].value === 'gratis') {
         document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$0.00</h4>`;
     } else {
-        document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$${valor_total}</h4>`;
+        document.querySelector('aside').querySelector('#DadosVolateis').innerHTML = dados_volateis+`<h4>TOTAL: R$${valor_total.toFixed(2)}</h4>`;
     };
 };
 document.querySelectorAll('.Opcoes#Metodo>input').forEach(element => {
