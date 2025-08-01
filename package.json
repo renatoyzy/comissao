@@ -1,21 +1,18 @@
 {
   "name": "comissao",
-  "version": "1.0.0",
-  "description": "Organização de vendas da comissão de formatura.",
-  "main": "server.js",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@ngrok/ngrok": "^1.4.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^4.21.2",
-    "mongodb": "^6.13.0",
+    "mongodb": "^6.18.0",
+    "next": "15.4.5",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "stream": "^0.0.3",
     "xlsx": "^0.18.5"
   }
