@@ -1,6 +1,7 @@
 import Head from "@/components/Head";
 import Header from "@/components/Header";
 import { useState, useEffect } from 'react';
+import { FaCheck, FaCircleCheck, FaCreditCard, FaMoneyBillWave, FaPix, FaStar, FaXmark } from "react-icons/fa6";
 
 export default function Home() {
   const [seller, setSeller] = useState('');
@@ -62,7 +63,7 @@ export default function Home() {
                   >
                     <img src={produto.icone || 'https://pngimg.com/uploads/question_mark/question_mark_PNG134.png'} />
                     <label id={produto.nome}>
-                      <i className="fa-solid fa-circle-check"></i>
+                      <FaCircleCheck />
                       {
                         produto.nome.replace(
                           /\w\S*/g,
@@ -197,20 +198,20 @@ export default function Home() {
                   <label>Método de pagamento</label>
                   <div className="Opcoes" id="Metodo">
                     <input type="radio" name="metodo_de_pagamento" id="cartao" value="cartao" checked={paymentMethod == 'cartao'} onChange={() => setPaymentMethod('cartao')} />
-                    <label htmlFor="cartao"><i className="fa-solid fa-credit-card"></i></label>
+                    <label htmlFor="cartao"><FaCreditCard /></label>
                     <input type="radio" name="metodo_de_pagamento" id="dinheiro" value="dinheiro" checked={paymentMethod == 'dinheiro'} onChange={() => setPaymentMethod('dinheiro')} />
-                    <label htmlFor="dinheiro"><i className="fa-solid fa-money-bill-wave"></i></label>
+                    <label htmlFor="dinheiro"><FaMoneyBillWave /></label>
                     <input type="radio" name="metodo_de_pagamento" id="outro" value="outro" checked={paymentMethod == 'outro'} onChange={() => setPaymentMethod('outro')} />
-                    <label htmlFor="outro"><i className="fa-brands fa-pix"></i></label>
+                    <label htmlFor="outro"><FaPix /></label>
                     <input type="radio" name="metodo_de_pagamento" id="gratis" value="gratis" checked={paymentMethod == 'gratis'} onChange={() => setPaymentMethod('gratis')} />
-                    <label htmlFor="gratis" style={{ color: 'transparent', boxShadow: 'none' }}><i className="fa-solid fa-star"></i></label>
+                    <label htmlFor="gratis" style={{ color: 'transparent', boxShadow: 'none' }}><FaStar /></label>
                   </div>
                   <label>Fiado</label>
                   <div className="Opcoes">
                     <input type="radio" name="fiado" id="fiado_nao" value="nao" checked={!fiado} onChange={() => setFiado(false)} />
-                    <label htmlFor="fiado_nao"><i className="fa-solid fa-xmark"></i></label>
+                    <label htmlFor="fiado_nao"><FaXmark /></label>
                     <input type="radio" name="fiado" id="fiado_sim" value="sim" checked={fiado} onChange={() => setFiado(true)} />
-                    <label htmlFor="fiado_sim"><i className="fa-solid fa-check"></i></label>
+                    <label htmlFor="fiado_sim"><FaCheck /></label>
                   </div>
                   <input type="submit" className="BotaoPrimario" />
                 </form>

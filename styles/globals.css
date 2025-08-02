@@ -189,7 +189,7 @@ main {
                 user-select: none;
                 -moz-user-select: none;
 
-                i, input {
+                svg, input {
                     display: none;
                 }
 
@@ -197,7 +197,7 @@ main {
                     box-shadow: 0px -0.5px 0px 0.2px #C5C8CB inset;
                 }
 
-                i {
+                svg {
                     position: absolute;
                     top: 10px;
                 }
@@ -220,7 +220,7 @@ main {
             box-shadow: 0px -0.5px 0px 2px #3a92d3 inset;
             overflow: visible;
 
-            i, input {
+            svg, input {
                 display: unset;
                 max-width: -webkit-fill-available;
             }

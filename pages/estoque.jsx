@@ -57,7 +57,6 @@ export default function Estoque() {
                   >
                     <img src={produto.icone || 'https://pngimg.com/uploads/question_mark/question_mark_PNG134.png'} />
                     <label id={produto.nome}>
-                      <i className="fa-solid fa-circle-check"></i>
                       {
                         produto.nome.replace(
                           /\w\S*/g,
