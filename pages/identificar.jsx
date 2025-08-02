@@ -31,7 +31,7 @@ export default function Identificar() {
               <h1>Identifique-se</h1>
 
               <form id="FormularioEntrarVendedor" onSubmit={handleFormSubmit}>
-                  <label for="nome">Seu nome completo</label>
+                  <label htmlFor="nome">Seu nome completo</label>
                   <input placeholder="Fulano da Silva" type="text" name="nome" id="nome" required="" value={name} onChange={(e) => setName(e.target.value)} />
                   <input type="submit" value="Começar a vender" className="BotaoPrimario" />
               </form>

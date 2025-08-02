@@ -18,6 +18,8 @@ const client = new MongoClient(process.env.MONGODB_URI, {
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ message: 'Método não permitido' });
 
+  await client.connect();
+
   const dados = await client.db('comissao').collection('vendas').find({}).toArray();
 
   if (dados.length === 0) {
@@ -48,5 +50,7 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Erro ao baixar tabela de vendas:', error);
     res.status(500).json({ error_message: error.message });
+  } finally {
+    await client.close();
   }
 }
