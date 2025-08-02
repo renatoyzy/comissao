@@ -2,14 +2,6 @@ import { MongoClient, ServerApiVersion } from "mongodb";
 import xlsx from "xlsx";
 import stream from "stream";
 
-const client = new MongoClient(process.env.MONGODB_URI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
-
 /**
  * 
  * @param {Request} req
@@ -17,6 +9,14 @@ const client = new MongoClient(process.env.MONGODB_URI, {
  */
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ message: 'Método não permitido' });
+
+  const client = new MongoClient(process.env.MONGODB_URI, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
 
   await client.connect();
 

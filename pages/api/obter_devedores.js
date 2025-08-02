@@ -1,13 +1,5 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-const client = new MongoClient(process.env.MONGODB_URI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
-
 /**
  * 
  * @param {Request} req
@@ -16,9 +8,17 @@ const client = new MongoClient(process.env.MONGODB_URI, {
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ message: 'Método não permitido' });
 
-  await client.connect();
+  const client = new MongoClient(process.env.MONGODB_URI, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
 
   try {
+
+    await client.connect();
 
     const devedores = await client.db('comissao').collection('devedores').find().toArray();
 

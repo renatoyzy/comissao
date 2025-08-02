@@ -336,6 +336,10 @@ main {
         align-items: stretch;
         overflow: scroll;
         height: calc(100dvh - 205px);
+
+        .CorpoElemento {
+            width: unset;
+        }
     }
     * {
         overflow: visible;

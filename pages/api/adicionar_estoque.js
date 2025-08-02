@@ -1,13 +1,5 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-const client = new MongoClient(process.env.MONGODB_URI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
-
 /**
  * 
  * @param {Request} req
@@ -17,6 +9,14 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ message: 'Método não permitido' });
   
   let { nome, icone, quantidade, data_criacao, valor_da_unidade } = req.body;
+
+  const client = new MongoClient(process.env.MONGODB_URI, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
 
   try {
       if (!nome || !data_criacao) {
