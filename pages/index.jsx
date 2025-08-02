@@ -29,12 +29,12 @@ export default function Home() {
     async function retrieveProducts() {
       try {
         // Comunicação com o backend
-        let response = seller && await fetch('/api/obter_estoque', {
+        const response = await fetch('/api/obter_estoque', {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' }
         });
 
-        let data = await response.json();
+        const data = await response.json();
 
         if (data.error_message) return typeof window !== 'undefined' && window.alert(`Erro de comunicação\n${data.error_message}`);
 
@@ -99,7 +99,7 @@ export default function Home() {
       }
     }
     retrieveProducts();
-  }, [setSelectedProducts]);
+  }, [setSelectedProducts, seller]);
 
   /**
    * Manuseio do formulário
