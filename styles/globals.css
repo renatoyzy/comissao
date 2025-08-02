@@ -23,6 +23,7 @@
     margin: 0;
     overflow: hidden;
     transition-duration: .4s;
+    box-sizing: border-box;
 }
 
 body {
