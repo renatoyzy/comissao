@@ -1,5 +1,6 @@
 import Head from "@/components/Head";
 import { useState } from "react";
+import styles from "@/styles/pages/identificar.module.css";
 
 export default function Identificar() {
   const [name, setName] = useState('');
@@ -26,8 +27,8 @@ export default function Identificar() {
           <h1>Sistema de vendas da comissão de formatura</h1>
       </header>
 
-      <main>
-          <div className="ElementoCentral">
+      <main id={styles.main}>
+          <div>
               <h1>Identifique-se</h1>
 
               <form id="FormularioEntrarVendedor" onSubmit={handleFormSubmit}>
