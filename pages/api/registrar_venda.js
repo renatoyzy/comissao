@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
         console.log(`${data_venda} Venda inserida: ${result.insertedId}`);
 
-        client.db('comissao').collection('produtos').findOneAndUpdate(
+        await client.db('comissao').collection('produtos').findOneAndUpdate(
             { nome: produto },
             { $inc: { quantidade: -parseInt(quantidade) } },
             { returnDocument: "after", upsert: true }
