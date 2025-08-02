@@ -29,7 +29,7 @@ export default function Home() {
     async function retrieveProducts() {
       try {
         // Comunicação com o backend
-        let response = await fetch('/api/obter_estoque', {
+        let response = seller && await fetch('/api/obter_estoque', {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' }
         });
