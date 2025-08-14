@@ -88,7 +88,7 @@ export default function Estoque() {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
-    const nome = data["nome"].toLowerCase();
+    const nome = data["nome"];
     const icone = data["icone"];
     const valor_da_unidade = parseFloat(data["valor"]);
     const quantidade = parseInt(data["quantidade"]);
