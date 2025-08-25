@@ -56,7 +56,7 @@ export default function Home() {
                     id={produto.nome}
                     onClick={(e) => {
                       document.getElementById(produto.nome).classList.toggle('Selecionado');
-                      document.getElementById(`quantidade-${produto.nome}`).value = 1;
+                      Array.from(e.currentTarget.children).find(e => e.id === 'quantidade').value = 1;
                       const insertProduct = produto;
                       insertProduct['quantidade'] = 1;
                       setSelectedProducts(prevSet => prevSet.includes(produto) ? prevSet.filter(elemento => elemento != produto) : [...prevSet, insertProduct]);
@@ -132,7 +132,7 @@ export default function Home() {
 
     const fetches = Array.from(produtosSelecionados).map(async (produto) => {
       const produto_id = produto.querySelector('label').id;
-      const quantidade = produto.querySelector(`input#quantidade-${produto.nome}`)?.valueAsNumber;
+      const quantidade = produto.querySelector(`input#quantidade`)?.valueAsNumber;
       const valor = metodo_de_pagamento == "GRATIS" ? 0 : null;
 
       try {
