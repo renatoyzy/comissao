@@ -56,7 +56,7 @@ export default function Home() {
                     id={produto.nome}
                     onClick={(e) => {
                       document.getElementById(produto.nome).classList.toggle('Selecionado');
-                      // document.getElementById(`quantidade`).value = 1;
+                      document.getElementById(`quantidade`).value = 1;
                       const insertProduct = produto;
                       insertProduct['quantidade'] = 1;
                       setSelectedProducts(prevSet => prevSet.includes(produto) ? prevSet.filter(elemento => elemento != produto) : [...prevSet, insertProduct]);
@@ -74,7 +74,7 @@ export default function Home() {
                       <input 
                         type="number"
                         name="quantidade"
-                        id={`quantidade-${produto.nome}`}
+                        id={`quantidade`}
                         placeholder="quantidade"
                         defaultValue="1"
                         max={produto.quantidade}
