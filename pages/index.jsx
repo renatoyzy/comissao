@@ -56,7 +56,7 @@ export default function Home() {
                     id={produto.nome}
                     onClick={(e) => {
                       document.getElementById(produto.nome).classList.toggle('Selecionado');
-                      Array.from(e.currentTarget.children).find(e => e.id === 'quantidade').value = 1;
+                      // document.getElementById(`quantidade`).value = 1;
                       const insertProduct = produto;
                       insertProduct['quantidade'] = 1;
                       setSelectedProducts(prevSet => prevSet.includes(produto) ? prevSet.filter(elemento => elemento != produto) : [...prevSet, insertProduct]);
