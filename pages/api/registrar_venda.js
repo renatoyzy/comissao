@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
     try {
         if (!nome || !produto || !quantidade || !metodo_de_pagamento || !fiado || !vendedor || !data_venda) {
-            return res.status(400).json({ error_message: 'Todos os dados são obrigatórios' });
+            return res.status(400).json({ error_message: `Todos os dados são obrigatórios: ${nome}, ${produto}, ${quantidade}, ${valor}, ${metodo_de_pagamento}, ${fiado}, ${vendedor}, ${data_venda}` });
         };
 
         if(fiado=="SIM") metodo_de_pagamento = "-";
