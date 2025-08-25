@@ -56,6 +56,7 @@ export default function Home() {
                     id={produto.nome}
                     onClick={(e) => {
                       document.getElementById(produto.nome).classList.toggle('Selecionado');
+                      document.getElementById(`quantidade-${produto.nome}`).value = 1;
                       const insertProduct = produto;
                       insertProduct['quantidade'] = 1;
                       setSelectedProducts(prevSet => prevSet.includes(produto) ? prevSet.filter(elemento => elemento != produto) : [...prevSet, insertProduct]);
@@ -73,16 +74,17 @@ export default function Home() {
                       <input 
                         type="number"
                         name="quantidade"
-                        id="quantidade"
+                        id={`quantidade-${produto.nome}`}
                         placeholder="quantidade"
                         defaultValue="1"
                         max={produto.quantidade}
                         min="1" 
                         onClick={(e) => e.stopPropagation()}
                         onChange={(e) => {
+                          if (e.target.value<1) return;
                           const newProduct = produto;
                           newProduct['quantidade'] = e.target.valueAsNumber;
-                          setSelectedProducts(prevSet => [...prevSet.filter(elemento => elemento != produto), newProduct])
+                          setSelectedProducts(prevSet => [...prevSet.filter(elemento => elemento.nome != produto.nome), newProduct])
                         }}
                       />
                       <input type="hidden" name="valor_da_unidade" id="valor_da_unidade" value={produto.valor_da_unidade} />
@@ -130,7 +132,7 @@ export default function Home() {
 
     const fetches = Array.from(produtosSelecionados).map(async (produto) => {
       const produto_id = produto.querySelector('label').id;
-      const quantidade = produto.querySelector('input#quantidade')?.valueAsNumber;
+      const quantidade = produto.querySelector(`input#quantidade-${produto.nome}`)?.valueAsNumber;
       const valor = metodo_de_pagamento == "GRATIS" ? 0 : null;
 
       try {
@@ -190,6 +192,7 @@ export default function Home() {
                 <h4>TOTAL: R${
                   selectedProducts.map(produto => produto.quantidade * produto.valor_da_unidade)
                   .reduce((accumulator, currentValue) => Number(accumulator) + Number(currentValue), 0)
+                  || 0
                 }</h4>
                 <h1>Dados</h1>
                 <form id="FormularioRegistrarVenda" onSubmit={handleFormSubmit}>
