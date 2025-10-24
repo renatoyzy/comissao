@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <TextArea />
-      <h3>DFM Comissão (feito pelo Renato)</h3>
+      <h3>DFM - Comissão (feito pelo Renato)</h3>
     </div>
   );
 }
